@@ -1,6 +1,0 @@
-node_modules/
-package-lock.json
-
--g : global dùng cho nhiều projects
---save : chỉ nằm trong 1 project và bắt buộc phải có install
---save-dev : thuộc 1 project cụ thể nhưng k bắt buộc nó được bỏ khi chạy môi trường production
