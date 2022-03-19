@@ -1,12 +1,16 @@
+import React from 'react'
+
 type ProductProps = {
-    data:{
-        id:number,
-        name:string
+    data: {
+        id: number,
+        name: string
     }
 }
-const Products = ({data:{name,id}}:ProductProps) =>{
-    return (
-        <div>{name}</div>
-    )
+
+const Product = ({ data: { id, name} }: ProductProps) => {
+  return (
+    <div>{name}</div>
+  )
 }
-export default Products;
+
+export default Product
