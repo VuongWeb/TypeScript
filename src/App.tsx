@@ -52,7 +52,7 @@ function App() {
     <div className="App">
       {/* <ShowInfo name="Lê Văn Vương" age={19} /> */}
       {products.map(item => {
-        return <div key={item._id}>{item.name} <button onClick={()=>removeItem(item._id)}>Remove</button></div>
+        return <div key={item._id}>{item.name} - {item.price}<button onClick={()=>removeItem(item._id)}>Remove</button></div>
       })}
       <header>
        {/* <ul>
