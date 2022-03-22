@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import {Routes,Route,NavLink,Navigate} from 'react-router-dom'
 import './App.css'
 import Products from './components/Products'
-import ShowInfo from './components/showInfo'
+// import ShowInfo from './components/showInfo'
 import "bootstrap/dist/css/bootstrap.min.css";
 
 
@@ -15,6 +15,7 @@ import AdminLayout from './pages/layout/AdminLayout'
 import Dashboard from './pages/Dashboard'
 import ProductManager from './pages/ProductsManager'
 import ProductAdd from './pages/AddProducts'
+import Header from './components/Header';
 
 
 
@@ -42,19 +43,19 @@ function App() {
 
   const onHandleAdd = async (product:IProduct) =>{
     const {data} =await add(product);
-    setProducts([...product,data]);
+    setProducts([...products,data]);
   }
 
   
 
   return (
     <div className="App">
-      <ShowInfo name="Lê Văn Vương" age={19} />
+      {/* <ShowInfo name="Lê Văn Vương" age={19} /> */}
       {products.map(item => {
         return <div key={item._id}>{item.name} <button onClick={()=>removeItem(item._id)}>Remove</button></div>
       })}
       <header>
-       <ul>
+       {/* <ul>
          <li>
            <NavLink to="/">HomePage</NavLink>
          </li>
@@ -64,7 +65,10 @@ function App() {
          <li>
            <NavLink to="/about">About</NavLink>
          </li>
-       </ul>
+       </ul> */}
+    <Routes>
+      <Route path='/' element={<Header/>}/>
+    </Routes>
      </header>
      <main>
        <Routes>
@@ -81,7 +85,7 @@ function App() {
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="products">
                     <Route index element={<ProductManager />} />
-                    <Route path="add" element={<ProductAdd onAdd={onHandleAdd} />} />
+                    <Route path="add" element={<ProductAdd name="Vuong" onAdd={onHandleAdd} />} />
                 </Route>
             </Route>
        </Routes>
@@ -92,22 +96,3 @@ function App() {
 
 export default App
 
-{/* <Routes>
-            <Route path="/" element={<WebsiteLayout />}>
-              <Route index element={<Home />} />
-              <Route path="product">
-                  <Route index  element={<h1>Hien thi san pham</h1>} />
-                  <Route path=":id" element={<ProductDetail />} />
-              </Route>
-              <Route path="about" element={<h1>About page</h1>} />
-            </Route>
-            
-            <Route path="admin" element={<AdminLayout />}>
-                <Route index element={<Navigate to="dashboard"/>} />
-                <Route path="dashboard" element={<Dashboard />} />
-                <Route path="products">
-                    <Route  element={<ProductManager />} />
-                    <Route path="add" element={<ProductAdd />} />
-                </Route>
-            </Route>
-          </Routes> */}

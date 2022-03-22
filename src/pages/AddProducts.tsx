@@ -1,22 +1,22 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { IProduct } from '../types/products';
+import { useNavigate } from 'react-router-dom';
 
-type ProductAddProps  = {
-    name:string,
-    onAdd:(product:IProduct)=>void
+type ProductAddProps = {
+    name: string,
+    onAdd: (product: IProduct) => void
 }
 type TInputs = {
     name: String,
     price: number
 }
 
-
-const ProductAdd = (props: ProductAddProps ) => {
-    const { register , handleSubmit, formState: { errors }} = useForm<TInputs>()
-
-    const onSubmit:SubmitHandler<TInputs> = data =>{
-        // 
-        props.onAdd(data);
+const ProductAdd = (props: ProductAddProps) => {
+    const { register, handleSubmit, formState: { errors } } = useForm<TInputs>()
+    const Navigate =  useNavigate();
+    const onSubmit: SubmitHandler<TInputs> = data => {
+        props.onAdd(data)
+        Navigate('/admin/products')
     }
 
 
