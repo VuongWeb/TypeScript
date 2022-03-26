@@ -1,0 +1,29 @@
+{
+  "products": [
+    {
+      "name": "Lê Văn Vương",
+      "price": "3000",
+      "id": 1
+    },
+    {
+      "name": "Thảo quả update",
+      "price": "3000",
+      "id": 2
+    },
+    {
+      "name": "Lê Văn Vương",
+      "price": "3000",
+      "id": 3
+    },
+    {
+      "name": "Lê Văn Vương",
+      "price": "3000",
+      "id": 4
+    },
+    {
+      "name": "Thảo quả update",
+      "price": "3000",
+      "id": 5
+    }
+  ]
+}
