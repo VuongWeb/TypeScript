@@ -26,7 +26,7 @@ const ProductManager = (props: ProductListProps) => {
               <td>{item.name}</td>
               <td>{item.price}</td>
               <td><Link to={`/products/${item.id}`}>Edit</Link></td>
-              <td><button onClick={() => onRemove(item.id)}>Remove</button></td>
+              <td><button onClick={() => props.onRemove(item.id)}>Remove</button></td>
             </tr>
           })}
         </tbody>

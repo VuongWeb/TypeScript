@@ -24,6 +24,17 @@
       "name": "Thảo quả update",
       "price": "3000",
       "id": 5
+    },
+    {
+      "name": "Sản phẩm A1",
+      "price": "3000",
+      "id": 6
+    },
+    {
+      "name": "Thảo quả update",
+      "price": "3000",
+      "id": 7
     }
-  ]
+  ],
+  "users": []
 }

@@ -11,9 +11,13 @@ import ProductDetail from './pages/ProductDetail'
 import AdminLayout from './pages/layout/AdminLayout'
 import Dashboard from './pages/Dashboard'
 import ProductManager from './pages/ProductsManager'
-import ProductAdd from './pages/AddProducts'
+import ProductAdd from './pages/AddProducts';
 import Header from './components/Header';
 import EditProduct from './pages/layout/EditProduct';
+import Sigin from './pages/layout/Sigin';
+import Sigup from './pages/layout/Sigup';
+import { TAuth } from './types/auth';
+import { sigin } from './api/auth';
 
 function App() {
   // const [products,setProducts] = useState<IProduct>(data)
@@ -41,16 +45,14 @@ function App() {
     setProducts([...products,data]);
   }
 
-  
-
   return (
-    <div className="App">
+    <div className="App container">
       {/* <ShowInfo name="Lê Văn Vương" age={19} /> */}
       {products.map(item => {
         return <div key={item.id}>{item.name} - {item.price}<button onClick={()=>removeItem(item.id)}>Remove</button></div>
       })}
       <header>
-       <ul>
+       {/* <ul>
          <li>
            <NavLink to="/">HomePage</NavLink>
          </li>
@@ -60,7 +62,13 @@ function App() {
          <li>
            <NavLink to="/about">About</NavLink>
          </li>
-       </ul>
+         <li>
+           <NavLink to="/sigin">Sigin</NavLink>
+         </li>
+         <li>
+           <NavLink to="/sigup">Sigup</NavLink>
+         </li>
+       </ul> */}
     {/* <Routes>
       <Route path='/' element={<Header/>}/>
     </Routes> */}
@@ -73,14 +81,17 @@ function App() {
               <Route index element={<ProductManager onRemove={removeItem} products={products}/>}/>
               <Route path=':id' element={<ProductDetail/>}/>
             </Route>
+            <Route path='/sigin' element={<Sigin />} />
+            <Route path='/sigup' element={<Sigup/>} />
             <Route path='about' element={<h1>Aboutpage</h1>}/>
          </Route>
+         <Route path="*" element={<WebsiteLayout/>} />
          <Route path="admin" element={<AdminLayout />}>
                 <Route index element={<Navigate to="dashboard"/>} />
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="products">
                     <Route index element={<ProductManager onRemove={removeItem} products={products} />} />
-                    <Route path="add" element={<ProductAdd name="Vuong" onAdd={onHandleAdd} />} />
+                    <Route path="add" element={<ProductAdd  onAdd={onHandleAdd} />} />
                     <Route path=":id/edit" element={<EditProduct />} />
                 </Route>
             </Route>

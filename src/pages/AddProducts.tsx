@@ -3,7 +3,6 @@ import { IProduct } from '../types/products';
 import { useNavigate } from 'react-router-dom';
 
 type ProductAddProps = {
-    name: string,
     onAdd: (product: IProduct) => void
 }
 type TInputs = {
@@ -22,9 +21,8 @@ const ProductAdd = (props: ProductAddProps) => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            {props.name}
-            <input type="text" placeholder="Ten san pham" {...register('name')} />
-            <input type="number" placeholder="Gia san pham" {...register('price')} />
+            <input type="text" value={props.name} placeholder="Ten san pham" {...register('name')} />
+            <input type="number" value={props.price} placeholder="Gia san pham" {...register('price')} />
             <button>Thêm</button>
         </form>
     )
