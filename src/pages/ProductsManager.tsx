@@ -11,26 +11,30 @@ const ProductManager = (props: ProductListProps) => {
   return (
     <div>
       <h1>ListProduct</h1>
-      <table>
+      <table className="table">
         <thead>
           <tr>
-            <th>#</th>
-            <th>name</th>
-            <th>price</th>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Remove</th>
           </tr>
         </thead>
         <tbody>
           {props.products.map((item, i) => {
             return <tr key={i}>
-              <td>{i + 1}</td>
+              <td>{i+1}</td>
               <td>{item.name}</td>
               <td>{item.price}</td>
-              <td><Link to={`/products/${item.id}`}>Edit</Link></td>
-              <td><button onClick={() => props.onRemove(item.id)}>Remove</button></td>
+              <td><Link to={`/admin/products/${item.id}/edit`} className='btn btn-primary'>Edit</Link></td>
+              <td><button className='btn btn-danger' onClick={()=>props.onRemove(item.id)}>Remove</button></td>
             </tr>
           })}
+
         </tbody>
       </table>
+
     </div>
   )
 }

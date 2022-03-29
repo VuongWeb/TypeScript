@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import {Routes,Route,NavLink,Navigate} from 'react-router-dom'
+import { Routes, Route, NavLink, Navigate } from 'react-router-dom'
 import Products from './components/Products'
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { add, remove } from './api/products'
+import { add, remove, update } from './api/products'
 import { IProduct } from './types/products'
 import WebsiteLayout from './pages/layout/WebsiteLayout'
 import Home from './pages/Home'
@@ -25,78 +25,57 @@ function App() {
 
   useEffect(() => {
     const getProudcts = async () => {
-      const reponse = await fetch('http://localhost:8000/api/products');
+      const reponse = await fetch('http://localhost:3001/products');
       const data = await reponse.json();
       // console.log(data);
       setProducts(data);
     }
     getProudcts()
-  },[])
+  }, [])
 
-  const removeItem = (id :number) =>{
+  const removeItem = (id: number) => {
     //call api
     remove(id);
     //rêRender
-    setProducts(products.filter(item=>item.id !== id))
+    setProducts(products.filter(item => item.id !== id))
   }
 
-  const onHandleAdd = async (product:IProduct) =>{
-    const {data} =await add(product);
-    setProducts([...products,data]);
+  const onHandleAdd = async (product: IProduct) => {
+    const { data } = await add(product);
+    setProducts([...products, data]);
   }
 
+  const onHnadleUpdate = async (product: IProduct) => {
+    const { data } = await update(product);
+    console.log(data);
+    setProducts(products.map(item => item.id == data.id ? data : item));
+  }
   return (
     <div className="App container">
-      {/* <ShowInfo name="Lê Văn Vương" age={19} /> */}
-      {products.map(item => {
-        return <div key={item.id}>{item.name} - {item.price}<button onClick={()=>removeItem(item.id)}>Remove</button></div>
-      })}
-      <header>
-       {/* <ul>
-         <li>
-           <NavLink to="/">HomePage</NavLink>
-         </li>
-         <li>
-           <NavLink to="/products">Products Page</NavLink>
-         </li>
-         <li>
-           <NavLink to="/about">About</NavLink>
-         </li>
-         <li>
-           <NavLink to="/sigin">Sigin</NavLink>
-         </li>
-         <li>
-           <NavLink to="/sigup">Sigup</NavLink>
-         </li>
-       </ul> */}
-    {/* <Routes>
-      <Route path='/' element={<Header/>}/>
-    </Routes> */}
-     </header>
-     <main>
-       <Routes>
-         <Route path="/" element={<WebsiteLayout/>}>
-            <Route index element={<Home/>}/>
+      <main>
+        <Routes>
+          <Route path="/" element={<WebsiteLayout />}>
+            <Route index element={<Home />} />
             <Route path='products'>
-              <Route index element={<ProductManager onRemove={removeItem} products={products}/>}/>
-              <Route path=':id' element={<ProductDetail/>}/>
+              <Route index element={<ProductManager onRemove={removeItem} products={products} />} />
+              <Route path=':id' element={<ProductDetail />} />
             </Route>
             <Route path='/sigin' element={<Sigin />} />
-            <Route path='/sigup' element={<Sigup/>} />
-            <Route path='about' element={<h1>Aboutpage</h1>}/>
-         </Route>
-         <Route path="*" element={<WebsiteLayout/>} />
-         <Route path="admin" element={<AdminLayout />}>
-                <Route index element={<Navigate to="dashboard"/>} />
-                <Route path="dashboard" element={<Dashboard />} />
-                <Route path="products">
-                    <Route index element={<ProductManager onRemove={removeItem} products={products} />} />
-                    <Route path="add" element={<ProductAdd  onAdd={onHandleAdd} />} />
-                    <Route path=":id/edit" element={<EditProduct />} />
-                </Route>
+            <Route path='/sigup' element={<Sigup />} />
+            <Route path='about' element={<h1>Aboutpage</h1>} />
+          </Route>
+          <Route path="*" element={<WebsiteLayout />} />
+          <Route path="admin" element={<AdminLayout />}>
+            <Route index element={<Navigate to="dashboard" />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="products">
+              <Route index element={<ProductManager onRemove={removeItem} products={products} />} />
+              <Route path="add" element={<ProductAdd onAdd={onHandleAdd} />} />
+              <Route path=":id/edit" element={<EditProduct onUpdate={onHnadleUpdate} />} />
             </Route>
-       </Routes>
-     </main>
+          </Route>
+        </Routes>
+      </main>
     </div>
   )
 }

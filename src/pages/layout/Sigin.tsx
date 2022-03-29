@@ -1,5 +1,3 @@
-import React from 'react'
-import { TAuth } from '../../types/auth'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
 import { sigin } from '../../api/auth';
@@ -14,15 +12,15 @@ type TSigin = {
 const Sigin = (props: props) => {
     const { register, handleSubmit, formState: { errors } } = useForm<TSigin>();
     const navigate = useNavigate();
-    const onSigin: SubmitHandler<TSigin> = (data) => {
+    const onSigin: SubmitHandler<TSigin> = (data:TSigin) => {
         sigin(data)
         navigate('/')
     }
     // const 
     return (
         <div>
-            <h2>Đăng nhập</h2>
-            <form>
+            <h2 className='text-center'>Đăng nhập</h2>
+            <form className='w-50 m-auto' onSubmit={handleSubmit(onSigin)}>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
                     <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />

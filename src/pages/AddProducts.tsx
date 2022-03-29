@@ -12,19 +12,28 @@ type TInputs = {
 
 const ProductAdd = (props: ProductAddProps) => {
     const { register, handleSubmit, formState: { errors } } = useForm<TInputs>()
-    const Navigate =  useNavigate();
-    const onSubmit: SubmitHandler<TInputs> = (data : IProduct) => {
+    const Navigate = useNavigate();
+    const onSubmit: SubmitHandler<TInputs> = (data: IProduct) => {
         props.onAdd(data)
         Navigate('/admin/products')
     }
 
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <input type="text" value={props.name} placeholder="Ten san pham" {...register('name')} />
-            <input type="number" value={props.price} placeholder="Gia san pham" {...register('price')} />
-            <button>Thêm</button>
-        </form>
+        <div>
+            <h2 className='text-center'>Thêm sản phẩm</h2>
+            <form className='w-50 m-auto' onSubmit={handleSubmit(onSubmit)}>
+                <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">Tên sản phẩm</label>
+                    <input type="text" className="form-control"  {...register('name')} />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="exampleInputPassword1" className="form-label">Giá sản phẩm</label>
+                    <input type="number" className="form-control" {...register('price')} />
+                </div>
+                <button type="submit" className="btn btn-primary">Add</button>
+            </form >
+        </div>
     )
 }
 

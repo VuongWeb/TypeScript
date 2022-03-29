@@ -5,7 +5,7 @@ const Sigup = () => {
   return (
     <div className="">
       <h2 className="text-center">Đăng Ký</h2>
-      <form>
+      <form className='w-50 m-auto'>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">Full Name</label>
           <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />

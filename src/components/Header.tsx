@@ -19,26 +19,14 @@ const Header = () => {
           <NavLink to="/about" className='nav-link p-3 fs-4 fw-bold text-dark'>About page</NavLink>
           </li>
       </ul>
-
-
-
-        {/* <ul>
-         <li>
-           <NavLink to="/">HomePage</NavLink>
-         </li>
-         <li>
-           <NavLink to="/products">Products Page</NavLink>
-         </li>
-         <li>
-           <NavLink to="/about">About</NavLink>
-         </li>
-         <li>
-           <NavLink to="/sigin">Sigin</NavLink>
-         </li>
-         <li>
-           <NavLink to="/sigup">Sigup</NavLink>
-         </li>
-       </ul> */}
+      <ul className="nav mt-4">
+          <li className="nav-item">
+            <NavLink to="/sigin" className='nav-link pt-3 text-dark fw-bolder'>Login</NavLink>
+          </li> 
+          <li className="nav-item">
+          <NavLink to="/sigup" className='nav-link pt-3  text-dark fw-bolder'>Register</NavLink>
+          </li>
+      </ul>
     </div>
   )
 }
