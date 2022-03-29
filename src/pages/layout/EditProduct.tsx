@@ -31,7 +31,7 @@ const EditProduct = (props: ProductsProps) => {
   }
   return (
     <div>
-      <h2 className='text-center'>Edit product</h2>
+      <h2 className='text-center text-[600]'>Edit product</h2>
       <form className='w-50 m-auto' onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">Name products</label>
