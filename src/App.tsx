@@ -62,7 +62,7 @@ function App() {
             </Route>
             <Route path='/sigin' element={<Sigin />} />
             <Route path='/sigup' element={<Sigup />} />
-            <Route path='about' element={<h1>Aboutpage</h1>} />
+            <Route path='about' element={<h1 className='text-red'>Aboutpage</h1>} />
           </Route>
           <Route path="*" element={<WebsiteLayout />} />
           <Route path="admin" element={<AdminLayout />}>

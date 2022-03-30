@@ -9,6 +9,11 @@
       "name": "Thảo quả update",
       "price": "50000",
       "id": 2
+    },
+    {
+      "name": "Lê Văn Vương",
+      "price": "3000",
+      "id": 3
     }
   ],
   "users": []
