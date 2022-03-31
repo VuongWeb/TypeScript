@@ -1,19 +1,28 @@
 {
   "products": [
     {
-      "name": "Thảo quả update 123",
-      "price": "50000",
-      "id": 2
-    },
-    {
       "name": "Lê Văn Vương",
       "price": "3000",
-      "id": 3
+      "img": "https://shop.mixigaming.com/wp-content/uploads/2021/01/Ao-phong-Mixi-Phong-Stream-scaled.jpg",
+      "id": 5
     },
     {
-      "name": "Khô gà",
-      "price": "50000",
-      "id": 4
+      "name": "Khô gà 1",
+      "img": "https://res.cloudinary.com/dkiw9eaeh/image/upload/v1645421976/zie60bpxwr3xwyn0mvdm.jpg",
+      "price": "120000111",
+      "id": 6
+    },
+    {
+      "name": "Thảo quả update",
+      "img": "https://shop.mixigaming.com/wp-content/uploads/2021/01/Ao-phong-Mixi-Phong-Stream-scaled.jpg",
+      "price": "3000",
+      "id": 7
+    },
+    {
+      "name": "Thảo quả update",
+      "img": "https://shop.mixigaming.com/wp-content/uploads/2021/01/Ao-phong-Mixi-Phong-Stream-scaled.jpg",
+      "price": "3000",
+      "id": 8
     }
   ],
   "users": []

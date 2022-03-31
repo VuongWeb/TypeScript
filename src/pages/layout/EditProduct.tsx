@@ -9,7 +9,8 @@ type ProductsProps = {
 }
 type FormInput = {
   name: String,
-  price: number
+  price: number,
+  img:String
 }
 const EditProduct = (props: ProductsProps) => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm<FormInput>();
@@ -31,18 +32,28 @@ const EditProduct = (props: ProductsProps) => {
   }
   return (
     <div>
-      <h2 className='text-center text-[600]'>Edit product</h2>
-      <form className='w-50 m-auto' onSubmit={handleSubmit(onSubmit)}>
-        <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">Name products</label>
-          <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" {...register('name', { required: true })} />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">Price products</label>
-          <input type="number" className="form-control" id="exampleInputPassword1"{...register('price', { required: true })} />
-        </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
-      </form >
+      <h2 className='text-2xl font-[600] text-center py-5'>Sửa sản phẩm</h2>
+            <form className="mt-8 space-y-6 w-3/5 mx-auto"onSubmit={handleSubmit(onSubmit)}>
+                <div className="rounded-md shadow-sm -space-y-px">
+                    <div>
+                        <label className="sr-only">Tên sản phẩm</label>
+                        <input type="text" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Tên sản phẩm" {...register('name', { required: true })} />
+                    </div>
+                    <div>
+                        <label className="sr-only">Ảnh sản phẩm</label>
+                        <input type="text" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Ảnh sản phẩm (url)" {...register('img', { required: true })}  />
+                    </div>
+                    <div>
+                        <label className="sr-only">Giá sản phẩm</label>
+                        <input type="number" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Giá sản phẩm" {...register('price')}/>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Thêm
+                    </button>
+                </div>
+            </form>
     </div>
   )
 }
