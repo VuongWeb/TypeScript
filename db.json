@@ -1,12 +1,7 @@
 {
   "products": [
     {
-      "name": "Lê Văn Vương",
-      "price": "30000",
-      "id": 1
-    },
-    {
-      "name": "Thảo quả update",
+      "name": "Thảo quả update 123",
       "price": "50000",
       "id": 2
     },
@@ -14,6 +9,11 @@
       "name": "Lê Văn Vương",
       "price": "3000",
       "id": 3
+    },
+    {
+      "name": "Khô gà",
+      "price": "50000",
+      "id": 4
     }
   ],
   "users": []

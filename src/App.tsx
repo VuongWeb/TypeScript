@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route, NavLink, Navigate } from 'react-router-dom'
 import Products from './components/Products'
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 import { add, remove, update } from './api/products'
 import { IProduct } from './types/products'
@@ -51,11 +51,10 @@ function App() {
     setProducts(products.map(item => item.id == data.id ? data : item));
   }
   return (
-    <div className="App container">
-      <main>
+    <div className="App font-mono">
         <Routes>
           <Route path="/" element={<WebsiteLayout />}>
-            <Route index element={<Home />} />
+            <Route index element={<Home products={products} />} />
             <Route path='products'>
               <Route index element={<ProductManager onRemove={removeItem} products={products} />} />
               <Route path=':id' element={<ProductDetail />} />
@@ -75,7 +74,6 @@ function App() {
             </Route>
           </Route>
         </Routes>
-      </main>
     </div>
   )
 }

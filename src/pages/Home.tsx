@@ -1,36 +1,23 @@
+import { IProduct } from '../types/products'
+import ListProducts from './ListProducts'
 
-import React from 'react'
-import { Link } from 'react-router-dom'
+type ProductsListProps = {
+  products: IProduct[],
+}
 
-type Props = {}
-
-const Home = (props: Props) => {
+const Home = (props: ProductsListProps) => {
   return (
-    <div className='row'>
-      <h1>Trang chủ</h1>
-      <div className="card col" style={{ width: '18rem', padding:'1rem', margin:'1rem' }}>
-        <img src="https://shop.mixigaming.com/wp-content/uploads/sb-instagram-feed-images/268138393_125711963246796_9114059892253484825_nfull.jpg" className=" col-img-top" alt="..." />
-        <div className=" col-body">
-          <h5 className="card-title">Card title</h5>
-          <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <Link to="#" className="btn btn-primary">Go somewhere</Link>
+    <div>
+      <h1 className='text-center py-5 font-[600] text-3xl'>Trang chủ</h1>
+      {/* <ListProducts products={props}/> */}
+      <div className='grid grid-cols-3 gap-4 w-5/6 mx-auto'>
+        {props.products.map((item)=>{
+          return <div className='products border-2 border-solid p-3 text-center'>
+          <img src="https://cf.shopee.vn/file/7ae7d0da6bba4694af7ef3e605ab1129" width='500' alt="" />
+          <h2 className='font-[600] text-2xl py-3'>{item.name}</h2>
+          <span className='text-red-600 text-xl py-3'>{item.price}</span>
         </div>
-      </div>
-      <div className="card col" style={{ width: '18rem', padding:'1rem', margin:'1rem' }}>
-        <img src="https://shop.mixigaming.com/wp-content/uploads/sb-instagram-feed-images/268138393_125711963246796_9114059892253484825_nfull.jpg" className="card-img-top" alt="..." />
-        <div className="card-body">
-          <h5 className="card-title">Card title</h5>
-          <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <Link to="#" className="btn btn-primary">Go somewhere</Link>
-        </div>
-      </div>
-      <div className="card col" style={{ width: '18rem', padding:'1rem', margin:'1rem' }}>
-        <img src="https://shop.mixigaming.com/wp-content/uploads/sb-instagram-feed-images/268138393_125711963246796_9114059892253484825_nfull.jpg" className="card-img-top" alt="..." />
-        <div className="card-body">
-          <h5 className="card-title">Card title</h5>
-          <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <Link to="#" className="btn btn-primary">Go somewhere</Link>
-        </div>
+        })}
       </div>
     </div>
   )
