@@ -23,6 +23,12 @@
       "img": "https://shop.mixigaming.com/wp-content/uploads/2021/01/Ao-phong-Mixi-Phong-Stream-scaled.jpg",
       "price": "3000",
       "id": 8
+    },
+    {
+      "name": "Lê Văn Vương",
+      "img": "https://res.cloudinary.com/dkiw9eaeh/image/upload/v1645421976/zie60bpxwr3xwyn0mvdm.jpg",
+      "price": "3000",
+      "id": 9
     }
   ],
   "users": []

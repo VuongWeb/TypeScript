@@ -16,9 +16,8 @@ import Header from './components/Header';
 import EditProduct from './pages/layout/EditProduct';
 import Sigin from './pages/layout/Sigin';
 import Sigup from './pages/layout/Sigup';
-import { TAuth } from './types/auth';
-import { sigin } from './api/auth';
 import { AboutPage } from './pages/AboutPage'
+import CartPage from './pages/CartPage'
 
 function App() {
   // const [products,setProducts] = useState<IProduct>(data)
@@ -28,7 +27,6 @@ function App() {
     const getProudcts = async () => {
       const reponse = await fetch('http://localhost:3001/products');
       const data = await reponse.json();
-      // console.log(data);
       setProducts(data);
     }
     getProudcts()
@@ -60,9 +58,10 @@ function App() {
               <Route index element={<ProductManager onRemove={removeItem} products={products} />} />
               <Route path=':id' element={<ProductDetail />} />
             </Route>
-            <Route path='/sigin' element={<Sigin />} />
-            <Route path='/sigup' element={<Sigup />} />
+            <Route path='sigin' element={<Sigin />} />
+            <Route path='sigup' element={<Sigup />} />
             <Route path='about' element={<AboutPage/>} />
+            <Route path='cart' element={<CartPage/>} />
           </Route>
           <Route path="*" element={<WebsiteLayout />} />
           <Route path="admin" element={<AdminLayout />}>
