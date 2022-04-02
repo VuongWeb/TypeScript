@@ -56,7 +56,7 @@ function App() {
           <Route path="/" element={<WebsiteLayout />}>
             <Route index element={<Home products={products} />} />
             <Route path='products'>
-              <Route index element={<ProductsPage/>} />
+              <Route index element={<ProductsPage products={products}/>} />
               <Route path=':id' element={<ProductDetail />} />
             </Route>
             <Route path='sigin' element={<Sigin />} />

@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <div>
       <header >
-        <div className='transition duration-300 flex justify-around p-3  leading-loose  hover:bg-[#ccc] hover:text-[#000] fixed w-full z-50 border-b-2 border-white duration-200'>
+        <div className='transition duration-300 flex justify-around p-3 opacity-80 leading-loose  hover:bg-[#ccc] hover:text-[#000] fixed w-full z-50 border-b-2 border-white duration-200'>
           <div className='logo'>
             <span className='text-4xl font-[800] leading-loose text-white '>Mixi.</span>
           </div>
