@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 export const AboutPage = () => {
     return (
-        <div className="py-8">
+        <div className="py-24">
             <div className="content flex w-3/4 mx-auto gap-8">
                 <div className="img">
                     <img src="https://uicookies.com/demo/theme/trainer/img/about_me.jpg" width='100%' alt="" />
@@ -13,7 +13,7 @@ export const AboutPage = () => {
                     <button className="bg-cyan-500 p-3 rounded-xl text-xl font-[500] text-white hover:bg-cyan-700">Read more about me</button>
                 </div>
             </div>
-            <div className="after-content grid grid-cols-3 w-5/6 mx-auto mt-12 gap-8">
+            <div className="after-content grid grid-cols-3 w-5/6 mx-auto mt-24 gap-8">
                 <div className="col">
                     <h2 className=" font-[600] text-2xl py-3">Title</h2>
                     <span className="text-[#888] text-lg">“Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.”</span>

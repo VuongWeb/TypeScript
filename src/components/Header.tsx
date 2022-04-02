@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Routes, Route, NavLink, Navigate } from 'react-router-dom'
 
 
 const Header = () => {
+  const [status, setStatus] = useState(false);
+
   return (
     <div>
       <header >
-        <div className='transition ease-in-out delay-300 duration-300 flex justify-around p-3  leading-loose  hover:bg-[#888] transition fixed w-full z-50 border-b-2 border-white'>
+        <div className='transition duration-300 flex justify-around p-3  leading-loose  hover:bg-[#ccc] hover:text-[#000] fixed w-full z-50 border-b-2 border-white duration-200'>
           <div className='logo'>
             <span className='text-4xl font-[800] leading-loose text-white '>Mixi.</span>
           </div>
@@ -23,9 +25,21 @@ const Header = () => {
           </ul>
           <ul className="nav flex">
             <li className="nav-item mx-3">
-              <NavLink to="/sigin" className='nav-link p-3 '><svg xmlns="http://www.w3.org/2000/svg" className="text-white  h-6 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg></NavLink>
+              <NavLink to="/sigin" className='nav-link p-3 '><button className='mt-8' onClick={() => {
+                setStatus(!status);
+                console.log(status)
+                // status ? ()
+              }}><svg xmlns="http://www.w3.org/2000/svg" className="text-white  h-6 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg></button></NavLink>
+                {/* <div className="sigin bg-[#fff] p-3 fixed right-24 top-20">
+                  <h2 className='text-center text-xl py-4'>Đăng nhập</h2>
+                  <form action="" className='p-4'>
+                    <input type="text" placeholder='Tên đăng nhập' className='p-2 my-2 border-2 outline-none'/><br />
+                    <input type="password" placeholder='Pass word ' className='p-2 my-2 border-2 outline-none'/><br />
+                    <button className='bg-[#888] p-2 rounded-xl mx-auto text-white'>đăng nhập</button>
+                  </form>
+                </div> */}
             </li>
             <li className="nav-item mx-3">
               <NavLink to="/sigup" className='nav-link p-3  '><svg xmlns="http://www.w3.org/2000/svg" className="text-white  h-6 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -41,7 +55,7 @@ const Header = () => {
         </div>
       </header>
       <div className="banner">
-        <img width='100%' src="https://scontent.fhan2-1.fna.fbcdn.net/v/t31.18172-8/22712367_126728308039778_3978332044617944075_o.jpg?_nc_cat=101&ccb=1-5&_nc_sid=e3f864&_nc_ohc=rh0k89QTI0gAX82k3Kf&_nc_ht=scontent.fhan2-1.fna&oh=00_AT8ErXuCK14JCh1LBaeWT5_izFXFmCLz4CLOJ8aYkSSe_g&oe=6269A4DF" alt="" />
+        <img width='100%' height='600' src="https://res.cloudinary.com/dkiw9eaeh/image/upload/v1648878529/wm9rhh2i3z9jrkjh6xnr.jpg"  alt="" />
       </div>
     </div>
   )

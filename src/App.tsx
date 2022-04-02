@@ -18,6 +18,7 @@ import Sigin from './pages/layout/Sigin';
 import Sigup from './pages/layout/Sigup';
 import { AboutPage } from './pages/AboutPage'
 import CartPage from './pages/CartPage'
+import ProductsPage from './pages/ProductsPage'
 
 function App() {
   // const [products,setProducts] = useState<IProduct>(data)
@@ -55,7 +56,7 @@ function App() {
           <Route path="/" element={<WebsiteLayout />}>
             <Route index element={<Home products={products} />} />
             <Route path='products'>
-              <Route index element={<ProductManager onRemove={removeItem} products={products} />} />
+              <Route index element={<ProductsPage/>} />
               <Route path=':id' element={<ProductDetail />} />
             </Route>
             <Route path='sigin' element={<Sigin />} />
