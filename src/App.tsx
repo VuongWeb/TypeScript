@@ -14,8 +14,8 @@ import ProductManager from './pages/ProductsManager'
 import ProductAdd from './pages/AddProducts';
 import Header from './components/Header';
 import EditProduct from './pages/layout/EditProduct';
-import Sigin from './pages/layout/Sigin';
-import Sigup from './pages/layout/Sigup';
+// import Sigin from './pages/layout/Sigin';
+// import Sigup from './pages/layout/Sigup';
 import { AboutPage } from './pages/AboutPage'
 import CartPage from './pages/CartPage'
 import ProductsPage from './pages/ProductsPage'
@@ -59,8 +59,8 @@ function App() {
               <Route index element={<ProductsPage products={products}/>} />
               <Route path=':id' element={<ProductDetail />} />
             </Route>
-            <Route path='sigin' element={<Sigin />} />
-            <Route path='sigup' element={<Sigup />} />
+            {/* <Route path='sigin' element={<Sigin />} /> */}
+            {/* <Route path='sigup' element={<Sigup />} /> */}
             <Route path='about' element={<AboutPage/>} />
             <Route path='cart' element={<CartPage/>} />
           </Route>

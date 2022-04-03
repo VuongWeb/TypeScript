@@ -4,11 +4,11 @@ import { Routes, Route, NavLink, Navigate } from 'react-router-dom'
 
 const Header = () => {
   const [status, setStatus] = useState(false);
-
+  const [statusSigup, setStatusSigup] = useState(false);
   return (
     <div>
       <header >
-        <div className='transition duration-300 flex justify-around p-3 opacity-80 leading-loose  hover:bg-[#ccc] hover:text-[#000] fixed w-full z-50 border-b-2 border-white duration-200'>
+        <div className='transition duration-300 flex justify-around p-3 opacity-90 leading-loose  hover:bg-[#ccc] hover:text-[#000] fixed w-full z-50 border-b-2 border-white duration-200'>
           <div className='logo'>
             <span className='text-4xl font-[800] leading-loose text-white '>Mixi.</span>
           </div>
@@ -24,27 +24,37 @@ const Header = () => {
             </li>
           </ul>
           <ul className="nav flex">
-            <li className="nav-item mx-3">
-              <NavLink to="/sigin" className='nav-link p-3 '><button className='mt-8' onClick={() => {
+            <li className="nav-item mx-3" title='Đăng nhập'>
+              <button className='mt-8'  onClick={() => {
                 setStatus(!status);
                 console.log(status)
-                // status ? ()
               }}><svg xmlns="http://www.w3.org/2000/svg" className="text-white  h-6 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg></button></NavLink>
-                {/* <div className="sigin bg-[#fff] p-3 fixed right-24 top-20">
+                </svg></button>
+                {status ? <div className="sigin bg-[#fff] p-3 fixed right-24 top-20">
                   <h2 className='text-center text-xl py-4'>Đăng nhập</h2>
                   <form action="" className='p-4'>
                     <input type="text" placeholder='Tên đăng nhập' className='p-2 my-2 border-2 outline-none'/><br />
                     <input type="password" placeholder='Pass word ' className='p-2 my-2 border-2 outline-none'/><br />
                     <button className='bg-[#888] p-2 rounded-xl mx-auto text-white'>đăng nhập</button>
                   </form>
-                </div> */}
+                </div> : ""}
             </li>
             <li className="nav-item mx-3">
-              <NavLink to="/sigup" className='nav-link p-3  '><svg xmlns="http://www.w3.org/2000/svg" className="text-white  h-6 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <button className='mt-8' onClick={() => {
+                setStatusSigup(!statusSigup);
+                console.log(statusSigup)
+              }}><svg xmlns="http://www.w3.org/2000/svg" className="text-white  h-6 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-              </svg></NavLink>
+              </svg></button>
+              {statusSigup ? <div className="sigin bg-[#fff] p-3 fixed right-24 top-20">
+                  <h2 className='text-center text-xl py-4'>Đăng Ký</h2>
+                  <form action="" className='p-4'>
+                    <input type="text" placeholder='Tên đăng nhập' className='p-2 my-2 border-2 outline-none'/><br />
+                    <input type="password" placeholder='Pass word ' className='p-2 my-2 border-2 outline-none'/><br />
+                    <button className='bg-[#888] p-2 rounded-xl mx-auto text-white'>đăng Ký</button>
+                  </form>
+                </div> : ""}
             </li>
             <li className="nav-item mx-3">
               <NavLink to="/cart" className='nav-link p-3'><svg xmlns="http://www.w3.org/2000/svg" className="text-white h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

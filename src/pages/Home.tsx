@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { IProduct } from '../types/products'
 import ListProducts from './ListProducts'
 
@@ -13,9 +14,11 @@ const Home = (props: ProductsListProps) => {
       <div className='grid grid-cols-4 gap-8 w-5/6 mx-auto'>
         {props.products.map((item) => {
           return <div className='products border-2 border-solid p-3 text-center'>
-            <img src={item.img} width='400' alt="" />
-            <h2 className='font-[600] text-2xl py-3'>{item.name}</h2>
-            <span className='text-red-600 text-xl py-3'>{item.price}</span>
+            <Link to={`/products/${item.id}`}>
+              <img src={`${item.img}`} width='400' alt="" />
+              <h2 className='font-[600] text-2xl py-3'>{item.name}</h2>
+              <span className='text-red-600 text-xl py-3'>{item.price}</span>
+            </Link>
           </div>
         })}
       </div>
@@ -40,28 +43,28 @@ const Home = (props: ProductsListProps) => {
       <h2 className='text-5xl text-center'>Campus</h2>
       <div className="list-image grid grid-cols-4 w-5/6 mx-auto py-16 object-cover">
         <div className='object-cover overflow-hidden'>
-          <img src="https://uicookies.com/demo/theme/resto/img/img_1.jpg"  alt=""  className='hover:scale-125 ease-in-out duration-300 '/>
+          <img src="https://uicookies.com/demo/theme/resto/img/img_1.jpg" alt="" className='hover:scale-125 ease-in-out duration-300 ' />
         </div>
         <div className='object-cover overflow-hidden'>
-          <img src="https://uicookies.com/demo/theme/resto/img/img_1.jpg"  alt=""  className='hover:scale-125 ease-in-out duration-300 '/>
+          <img src="https://uicookies.com/demo/theme/resto/img/img_1.jpg" alt="" className='hover:scale-125 ease-in-out duration-300 ' />
         </div>
         <div className='object-cover overflow-hidden'>
-          <img src="https://uicookies.com/demo/theme/resto/img/img_1.jpg"  alt=""  className='hover:scale-125 ease-in-out duration-300 '/>
+          <img src="https://uicookies.com/demo/theme/resto/img/img_1.jpg" alt="" className='hover:scale-125 ease-in-out duration-300 ' />
         </div>
         <div className='object-cover overflow-hidden'>
-          <img src="https://uicookies.com/demo/theme/resto/img/img_1.jpg"  alt=""  className='hover:scale-125 ease-in-out duration-300 '/>
+          <img src="https://uicookies.com/demo/theme/resto/img/img_1.jpg" alt="" className='hover:scale-125 ease-in-out duration-300 ' />
         </div>
         <div className='object-cover overflow-hidden'>
-          <img src="https://uicookies.com/demo/theme/resto/img/img_1.jpg"  alt=""  className='hover:scale-125 ease-in-out duration-300 '/>
+          <img src="https://uicookies.com/demo/theme/resto/img/img_1.jpg" alt="" className='hover:scale-125 ease-in-out duration-300 ' />
         </div>
         <div className='object-cover overflow-hidden'>
-          <img src="https://uicookies.com/demo/theme/resto/img/img_1.jpg"  alt=""  className='hover:scale-125 ease-in-out duration-300 '/>
+          <img src="https://uicookies.com/demo/theme/resto/img/img_1.jpg" alt="" className='hover:scale-125 ease-in-out duration-300 ' />
         </div>
         <div className='object-cover overflow-hidden'>
-          <img src="https://uicookies.com/demo/theme/resto/img/img_1.jpg"  alt=""  className='hover:scale-125 ease-in-out duration-300 '/>
+          <img src="https://uicookies.com/demo/theme/resto/img/img_1.jpg" alt="" className='hover:scale-125 ease-in-out duration-300 ' />
         </div>
         <div className='object-cover overflow-hidden'>
-          <img src="https://uicookies.com/demo/theme/resto/img/img_1.jpg"  alt=""  className='hover:scale-125 ease-in-out duration-300 '/>
+          <img src="https://uicookies.com/demo/theme/resto/img/img_1.jpg" alt="" className='hover:scale-125 ease-in-out duration-300 ' />
         </div>
       </div>
     </div>
