@@ -14,7 +14,7 @@ type TInputs = {
 const ProductAdd = (props: ProductAddProps) => {
     const { register, handleSubmit, formState: { errors } } = useForm<TInputs>()
     const Navigate = useNavigate();
-    const onSubmit: SubmitHandler<TInputs> = (data: IProduct) => {
+    const onSubmit: SubmitHandler<TInputs> = (data) => {
         props.onAdd(data)
         Navigate('/admin/products')
     }

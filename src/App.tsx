@@ -3,7 +3,7 @@ import { Routes, Route, NavLink, Navigate } from 'react-router-dom'
 import Products from './components/Products'
 // import "bootstrap/dist/css/bootstrap.min.css";
 
-import { add, remove, update } from './api/products'
+import { add, list, remove, update } from './api/products'
 import { IProduct } from './types/products'
 import WebsiteLayout from './pages/layout/WebsiteLayout'
 import Home from './pages/Home'
@@ -26,9 +26,11 @@ function App() {
 
   useEffect(() => {
     const getProudcts = async () => {
-      const reponse = await fetch('http://localhost:3001/products');
-      const data = await reponse.json();
-      setProducts(data);
+      // const {data} = await list;
+      // const data = await reponse.json();
+      // setProducts(data);
+      const { data } = await list();
+        setProducts(data);
     }
     getProudcts()
   }, [])
@@ -37,7 +39,7 @@ function App() {
     //call api
     remove(id);
     //rêRender
-    setProducts(products.filter(item => item.id !== id))
+    setProducts(products.filter(item => item._id !== id))
   }
 
   const onHandleAdd = async (product: IProduct) => {
@@ -48,7 +50,7 @@ function App() {
   const onHnadleUpdate = async (product: IProduct) => {
     const { data } = await update(product);
     console.log(data);
-    setProducts(products.map(item => item.id == data.id ? data : item));
+    setProducts(products.map(item => item._id == data._id ? data : item));
   }
   return (
     <div className="App font-mono">
