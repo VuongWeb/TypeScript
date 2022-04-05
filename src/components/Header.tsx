@@ -2,10 +2,10 @@ import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useForm, SubmitHandler } from "react-hook-form";
 // import { useNavigate } from 'react-router-dom';
-import { sigin,sigup } from '../api/auth';
+import { sigin, sigup } from '../api/auth';
 
 type SiginProps = {
-  onSigin: (user:TForm) => void
+  onSigin: (user: TForm) => void
 }
 
 type TForm = {
@@ -20,10 +20,11 @@ const Header = (props: SiginProps) => {
   const [statusSigup, setStatusSigup] = useState(false);
   const { register, handleSubmit, formState: { errors }, } = useForm<TForm>();
   // const navigate = useNavigate();
-  const onSigin:SubmitHandler<TForm> = (data) =>{
-    sigin(data);
+  const onSigin: SubmitHandler<TForm> = async (data) => {
+    const { data: user } = await sigin(data);
+    localStorage.setItem('user', JSON.stringify(user))
   }
-  const onSigup:SubmitHandler<TForm> = (data) =>{
+  const onSigup: SubmitHandler<TForm> = (data) => {
     sigup(data);
   }
   return (
@@ -56,7 +57,7 @@ const Header = (props: SiginProps) => {
                 <h2 className='text-center text-xl py-4'>Đăng nhập</h2>
                 <form action="" onSubmit={handleSubmit(onSigin)} className='p-4'>
                   <input type="text" placeholder='Tên đăng nhập' className='p-2 my-2 border-2 outline-none' {...register('email')} /><br />
-                  <input type="password" placeholder='Pass word ' className='p-2 my-2 border-2 outline-none' {...register('password')}/><br />
+                  <input type="password" placeholder='Pass word ' className='p-2 my-2 border-2 outline-none' {...register('password')} /><br />
                   <button className='bg-[#888] p-2 rounded-xl mx-auto text-white'>đăng nhập</button>
                 </form>
               </div> : ""}
@@ -71,8 +72,9 @@ const Header = (props: SiginProps) => {
               {statusSigup ? <div className="sigin bg-[#fff] p-3 fixed right-24 top-20">
                 <h2 className='text-center text-xl py-4'>Đăng Ký</h2>
                 <form action="" onSubmit={handleSubmit(onSigup)} className='p-4'>
-                  <input type="text" placeholder='Email của bạn' className='p-2 my-2 border-2 outline-none' {...register('email')}/><br />
-                  <input type="text" placeholder='Họ và Tên' className='p-2 my-2 border-2 outline-none' {...register('name')}/><br />
+                  <input type="text" placeholder='Email của bạn' className='p-2 my-2 border-2 outline-none' {...register('email')} /><br />
+                  <input type="text" placeholder='Họ và Tên' className='p-2 my-2 border-2 outline-none' {...register('name')} /><br />
+                  {/* {errors.name && <span className='text-red-600'>Name is required</span>} */}
                   <input type="password" placeholder='Pass word ' className='p-2 my-2 border-2 outline-none' {...register('password')} /><br />
                   <button className='bg-[#888] p-2 rounded-xl mx-auto text-white'>đăng Ký</button>
                 </form>

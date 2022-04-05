@@ -1,6 +1,14 @@
 import { IProduct } from "../types/products";
 import instance from "./instance";
 
+
+let user;
+if(localStorage.getItem('user')){
+    user = JSON.parse(localStorage.getItem('user'))
+}
+console.log(user)
+const {token ,user : getUser} = user;
+
 export const list = () => {
     const url = "/products";
     return instance.get(url);
@@ -15,8 +23,12 @@ export const read = (id: string | undefined) => {
 }
 
 export const add = (product:IProduct) => {
-    const url = "/products";
-    return instance.post(url,product);
+    const url = `/products/${getUser._id}`;
+    return instance.post(url,product,{
+        headers:{
+            "Authorization":`Bearer ${token}`
+        }
+    });
 }
 
 export const update = (product:IProduct) => {
