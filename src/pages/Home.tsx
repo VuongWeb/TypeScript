@@ -14,7 +14,7 @@ const Home = (props: ProductsListProps) => {
       <div className='grid grid-cols-4 gap-8 w-5/6 mx-auto'>
         {props.products.map((item) => {
           return <div className='products border-2 border-solid p-3 text-center'>
-            <Link to={`/products/${item.id}`}>
+            <Link to={`/products/${item._id}`}>
               <img src={`${item.img}`} width='400' alt="" />
               <h2 className='font-[600] text-2xl py-3'>{item.name}</h2>
               <span className='text-red-600 text-xl py-3'>{item.price}</span>

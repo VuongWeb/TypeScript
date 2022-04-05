@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route, NavLink, Navigate } from 'react-router-dom'
 import Products from './components/Products'
-// import "bootstrap/dist/css/bootstrap.min.css";
 
 import { add, list, remove, update } from './api/products'
 import { IProduct } from './types/products'
@@ -14,14 +13,11 @@ import ProductManager from './pages/ProductsManager'
 import ProductAdd from './pages/AddProducts';
 import Header from './components/Header';
 import EditProduct from './pages/layout/EditProduct';
-// import Sigin from './pages/layout/Sigin';
-// import Sigup from './pages/layout/Sigup';
 import { AboutPage } from './pages/AboutPage'
 import CartPage from './pages/CartPage'
 import ProductsPage from './pages/ProductsPage'
 
 function App() {
-  // const [products,setProducts] = useState<IProduct>(data)
   const [products, setProducts] = useState<IProduct[]>([])
 
   useEffect(() => {
@@ -61,8 +57,6 @@ function App() {
               <Route index element={<ProductsPage products={products}/>} />
               <Route path=':id' element={<ProductDetail />} />
             </Route>
-            {/* <Route path='sigin' element={<Sigin />} /> */}
-            {/* <Route path='sigup' element={<Sigup />} /> */}
             <Route path='about' element={<AboutPage/>} />
             <Route path='cart' element={<CartPage/>} />
           </Route>

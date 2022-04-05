@@ -19,7 +19,6 @@ const Header = (props: SiginProps) => {
   const [status, setStatus] = useState(false);
   const [statusSigup, setStatusSigup] = useState(false);
   const { register, handleSubmit, formState: { errors }, } = useForm<TForm>();
-  // const navigate = useNavigate();
   const onSigin: SubmitHandler<TForm> = async (data) => {
     const { data: user } = await sigin(data);
     localStorage.setItem('user', JSON.stringify(user))
@@ -59,6 +58,7 @@ const Header = (props: SiginProps) => {
                   <input type="text" placeholder='Tên đăng nhập' className='p-2 my-2 border-2 outline-none' {...register('email')} /><br />
                   <input type="password" placeholder='Pass word ' className='p-2 my-2 border-2 outline-none' {...register('password')} /><br />
                   <button className='bg-[#888] p-2 rounded-xl mx-auto text-white'>đăng nhập</button>
+                  <button className=''>đăng ký</button>
                 </form>
               </div> : ""}
             </li>
