@@ -1,14 +1,17 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { IProduct } from '../types/products';
 import { useNavigate } from 'react-router-dom';
+import { ICate } from '../types/cate';
 
 type ProductAddProps = {
-    onAdd: (product: IProduct) => void
+    onAdd: (product: IProduct) => void,
+    categories: ICate[];
 }
 type TInputs = {
     name: String,
     price: number,
-    img:String
+    img:String,
+    cateId:String
 }
 
 const ProductAdd = (props: ProductAddProps) => {
@@ -16,7 +19,7 @@ const ProductAdd = (props: ProductAddProps) => {
     const Navigate = useNavigate();
     const onSubmit: SubmitHandler<TInputs> = (data) => {
         props.onAdd(data)
-        Navigate('/admin/products')
+        // Navigate('/admin/products')
     }
     return (
         <div>
@@ -30,6 +33,13 @@ const ProductAdd = (props: ProductAddProps) => {
                     <div>
                         <label className="sr-only">Ảnh sản phẩm</label>
                         <input type="text" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Ảnh sản phẩm (url)" {...register('img')} />
+                    </div>
+                    <div>
+                       <select className='w-full p-2 border-2 border-[#ccc] outline-none text-[#888] font-thin'{...register('cateId')}>
+                           {props.categories.map((item)=>{
+                               return <option  value={`${item._id}`}>{item.name}</option>
+                           })}
+                       </select>
                     </div>
                     <div>
                         <label className="sr-only">Giá sản phẩm</label>

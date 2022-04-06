@@ -1,9 +1,11 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { IProduct } from '../types/products'
+import { ICate } from '../types/cate';
 
 type Productsprops = {
   products: IProduct[];
+  categories: ICate[];
 }
 
 const ProductsPage = (props: Productsprops) => {
@@ -18,15 +20,15 @@ const ProductsPage = (props: Productsprops) => {
             </form>
             <ul className='mt-12 p-8'>
               <li className='text-2xl font-[600] mb-8'>Danh mục </li>
-              <li className='py-2 hover:text-[#888] text-center'>
-                <NavLink to='#'>danh muc 1</NavLink>
-              </li>
-              <li className='py-2 hover:text-[#888] text-center'>
-                <NavLink to='#'>danh muc 1</NavLink>
-              </li>
-              <li className='py-2 hover:text-[#888] text-center'>
-                <NavLink to='#'>danh muc 1</NavLink>
-              </li>
+              {
+                props.categories.map((item) => {
+                  return <li className='py-2 hover:text-[#888] text-center'>
+                    <NavLink to={`${item._id}`}>{item.name}</NavLink>
+                  </li>
+                })
+              }
+
+
             </ul>
           </div>
         </div>
@@ -36,7 +38,7 @@ const ProductsPage = (props: Productsprops) => {
               return <div className=' w-5/6 mx-auto'>
 
                 <div className='products border-2 border-solid p-3 text-center my-8'>
-                  <Link to={`/products/${item.id}`}>
+                  <Link to={`/products/${item._id}`}>
                     <img src={`${item.img}`} width='400' alt="" />
                     <h2 className='font-[600] text-2xl py-3'>{item.name}</h2>
                     <span className='text-red-600 text-xl py-3'>{item.price}</span>

@@ -1,6 +1,6 @@
 import instance from "./instance"
 
 export const listCate = () => {
-    const url = "/cate";
+    const url = "/categories";
     return instance.get(url);
 }

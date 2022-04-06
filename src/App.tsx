@@ -16,19 +16,24 @@ import EditProduct from './pages/layout/EditProduct';
 import { AboutPage } from './pages/AboutPage'
 import CartPage from './pages/CartPage'
 import ProductsPage from './pages/ProductsPage'
+import { ICate } from './types/cate'
+import { listCate } from './api/category'
 
 function App() {
   const [products, setProducts] = useState<IProduct[]>([])
+  const [categories,setCategories] = useState<ICate[]>([])
 
   useEffect(() => {
     const getProudcts = async () => {
-      // const {data} = await list;
-      // const data = await reponse.json();
-      // setProducts(data);
       const { data } = await list();
         setProducts(data);
     }
-    getProudcts()
+    getProudcts();
+    const getCategories = async () =>{
+      const {data} = await listCate();
+      setCategories(data)
+    }
+    getCategories();
   }, [])
 
   const removeItem = (id: number) => {
@@ -54,9 +59,10 @@ function App() {
           <Route path="/" element={<WebsiteLayout />}>
             <Route index element={<Home products={products} />} />
             <Route path='products'>
-              <Route index element={<ProductsPage products={products}/>} />
-              <Route path=':id' element={<ProductDetail />} />
+              <Route index element={<ProductsPage categories={categories} products={products}/>} />
+              <Route path=':id' element={<ProductDetail categories={categories} />} />
             </Route>
+            {/* <Route path='/category/:slug' element={<AbotPage/>} /> */}
             <Route path='about' element={<AboutPage/>} />
             <Route path='cart' element={<CartPage/>} />
           </Route>
@@ -66,7 +72,7 @@ function App() {
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="products">
               <Route index element={<ProductManager onRemove={removeItem} products={products} />} />
-              <Route path="add" element={<ProductAdd onAdd={onHandleAdd} />} />
+              <Route path="add" element={<ProductAdd categories={categories} onAdd={onHandleAdd} />} />
               <Route path=":id/edit" element={<EditProduct onUpdate={onHnadleUpdate} />} />
             </Route>
           </Route>

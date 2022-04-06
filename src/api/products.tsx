@@ -4,10 +4,10 @@ import instance from "./instance";
 
 let user;
 if(localStorage.getItem('user')){
-    user = JSON.parse(localStorage.getItem('user'))
+    user = JSON.parse(localStorage.getItem('user'));
 }
-console.log(user)
 const {token ,user : getUser} = user;
+
 
 export const list = () => {
     const url = "/products";

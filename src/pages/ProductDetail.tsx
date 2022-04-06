@@ -3,8 +3,14 @@ import { useParams } from 'react-router-dom';
 import { read } from '../api/products';
 import { IProduct } from '../types/products';
 import { NavLink } from 'react-router-dom';
+import { ICate } from '../types/cate';
 
-const ProductDetail = () => {
+type cateProps = {
+  categories: ICate[];
+}
+
+const ProductDetail = (props: cateProps) => {
+  
   const { id } = useParams();
   const [product, setProduct] = useState<IProduct>();
   useEffect(() => {
@@ -27,15 +33,15 @@ const ProductDetail = () => {
             </form>
             <ul className='mt-12 p-8'>
               <li className='text-2xl font-[600] mb-8'>Danh mục </li>
-              <li className='py-2 hover:text-[#888] text-center'>
-                <NavLink to='#'>danh muc 1</NavLink>
-              </li>
-              <li className='py-2 hover:text-[#888] text-center'>
-                <NavLink to='#'>danh muc 1</NavLink>
-              </li>
-              <li className='py-2 hover:text-[#888] text-center'>
-                <NavLink to='#'>danh muc 1</NavLink>
-              </li>
+              {
+                props.categories.map((item) => {
+                  
+                  return <li className='py-2 hover:text-[#888] text-center'>
+                    <NavLink to={`/category/${item.slug}`}>{item.name}</NavLink>
+                  </li>
+                })
+              }
+
             </ul>
           </div>
         </div>
@@ -48,10 +54,10 @@ const ProductDetail = () => {
             <h5 className='font-[600] text-red-600'>{product?.price}đ</h5>
             <h6 className='mt-8'>Khối lượng: 1kg</h6>
             <h6 className='mt-2'>Bảo quản: Túi tiệt trùng</h6><br />
-            <input type="number" value='1' min='1' className='my-3 outline-none border-2 p-3 rounded-lg mr-3' />
+            <input type="number" min='1' className='my-3 outline-none border-2 p-3 rounded-lg mr-3' />
             <button className='bg-blue-600 text-white p-3 rounded-2xl hover:bg-blue-700 '>Add to cart</button>
-            <div className="contact border-2 p-4 mt-12  border-[#f59e0b]" style={{position:'relative'}}>
-              <h3 className='rounded-lg  text-center text-white  bg-[#f59e0b] left-20 p-2 ' style={{position:'absolute',top:'-20px'}}>Chính sách khách hàng</h3>
+            <div className="contact border-2 p-4 mt-12  border-[#f59e0b]" style={{ position: 'relative' }}>
+              <h3 className='rounded-lg  text-center text-white  bg-[#f59e0b] left-20 p-2 ' style={{ position: 'absolute', top: '-20px' }}>Chính sách khách hàng</h3>
               <ul>
                 <li className='list-disc ml-2 py-1'>1 đổi 1 trong vòng 7 ngày</li>
                 <li className='list-disc ml-2 py-1'>Hỗ trợ khách hàng 24/24</li>
