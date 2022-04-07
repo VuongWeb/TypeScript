@@ -17,9 +17,10 @@ import { AboutPage } from './pages/AboutPage'
 import CartPage from './pages/CartPage'
 import ProductsPage from './pages/ProductsPage'
 import { ICate } from './types/cate'
-import { listCate } from './api/category'
+import { listCate, removeCate } from './api/category'
 import CateProductsPage from './pages/CateProductsPage'
 import CateManager from './pages/CateManager'
+import AddCate from './pages/AddCate'
 
 function App() {
   const [products, setProducts] = useState<IProduct[]>([])
@@ -41,7 +42,7 @@ function App() {
   }, [])
 
 
-  ///remmove
+  ///====================remmove
   const removeItem = (id: number) => {
     //call api
     remove(id);
@@ -49,19 +50,19 @@ function App() {
     setProducts(products.filter(item => item._id !== id))
   }
 
-  const removeCate = (id:number) =>{
+  const HandleremoveCate = (id: number) => {
     removeCate(id);
-    setCategories(categories.)
+    setCategories(categories.filter(item => item._id !== id))
   }
 
-  //add
+  //============================add
   const onHandleAdd = async (product: IProduct) => {
     const { data } = await add(product);
     setProducts([...products, data]);
   }
 
 
-  //update
+  //=====================================update
   const onHnadleUpdate = async (product: IProduct) => {
     const { data } = await update(product);
     // console.log(data);
@@ -71,7 +72,7 @@ function App() {
   return (
     <div className="App font-mono">
       <Routes>
-        <Route path="/" element={<WebsiteLayout />}>
+        <Route path="/" element={<WebsiteLayout  />}>
           <Route index element={<Home products={products} />} />
           <Route path='products'>
             <Route index element={<ProductsPage categories={categories} products={products} />} />
@@ -90,7 +91,11 @@ function App() {
             <Route path="add" element={<ProductAdd categories={categories} onAdd={onHandleAdd} />} />
             <Route path=":id/edit" element={<EditProduct onUpdate={onHnadleUpdate} />} />
           </Route>
-          <Route path='categories' element={<CateManager listcate={categories} onRemove={ } />} />
+          <Route path='categories'>
+            <Route index element={<CateManager listcate={categories} onDelete={HandleremoveCate}/>} />
+            <Route path='add' element={<AddCate />} />
+          </Route>
+          
         </Route>
       </Routes>
     </div>

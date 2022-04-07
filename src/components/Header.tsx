@@ -8,7 +8,7 @@ type SiginProps = {
   onSigin: (user: TForm) => void
 }
 
-type TForm = {
+export type TForm = {
   name?: String,
   email: String,
   password: String
