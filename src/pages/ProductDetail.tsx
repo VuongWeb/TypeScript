@@ -33,9 +33,8 @@ const ProductDetail = (props: cateProps) => {
             </form>
             <ul className='mt-12 p-8'>
               <li className='text-2xl font-[600] mb-8'>Danh mục </li>
-              {
+              { 
                 props.categories.map((item) => {
-                  
                   return <li className='py-2 hover:text-[#888] text-center'>
                     <NavLink to={`/category/${item.slug}`}>{item.name}</NavLink>
                   </li>

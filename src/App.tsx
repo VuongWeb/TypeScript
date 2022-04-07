@@ -18,6 +18,7 @@ import CartPage from './pages/CartPage'
 import ProductsPage from './pages/ProductsPage'
 import { ICate } from './types/cate'
 import { listCate } from './api/category'
+import CateProductsPage from './pages/CateProductsPage'
 
 function App() {
   const [products, setProducts] = useState<IProduct[]>([])
@@ -50,9 +51,10 @@ function App() {
 
   const onHnadleUpdate = async (product: IProduct) => {
     const { data } = await update(product);
-    console.log(data);
+    // console.log(data);
     setProducts(products.map(item => item._id == data._id ? data : item));
   }
+
   return (
     <div className="App font-mono">
         <Routes>
@@ -62,7 +64,7 @@ function App() {
               <Route index element={<ProductsPage categories={categories} products={products}/>} />
               <Route path=':id' element={<ProductDetail categories={categories} />} />
             </Route>
-            {/* <Route path='/category/:slug' element={<AbotPage/>} /> */}
+            <Route path='/category/:slug' element={<CateProductsPage products={products} categories={categories} />} />
             <Route path='about' element={<AboutPage/>} />
             <Route path='cart' element={<CartPage/>} />
           </Route>

@@ -1,4 +1,5 @@
 export interface ICate{
     _id: number, 
-    name: string
+    name: string,
+    slug:string
 }

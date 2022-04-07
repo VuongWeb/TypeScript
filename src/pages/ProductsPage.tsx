@@ -23,12 +23,10 @@ const ProductsPage = (props: Productsprops) => {
               {
                 props.categories.map((item) => {
                   return <li className='py-2 hover:text-[#888] text-center'>
-                    <NavLink to={`${item._id}`}>{item.name}</NavLink>
+                    <NavLink to={`/category/${item.slug}`}>{item.name}</NavLink>
                   </li>
                 })
               }
-
-
             </ul>
           </div>
         </div>
@@ -36,7 +34,6 @@ const ProductsPage = (props: Productsprops) => {
           {
             props.products.map((item) => {
               return <div className=' w-5/6 mx-auto'>
-
                 <div className='products border-2 border-solid p-3 text-center my-8'>
                   <Link to={`/products/${item._id}`}>
                     <img src={`${item.img}`} width='400' alt="" />
