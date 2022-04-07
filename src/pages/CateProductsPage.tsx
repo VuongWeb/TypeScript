@@ -11,16 +11,18 @@ type Props = {
 
 const CateProductsPage = (props: Props) => {
     const { slug } = useParams();
-    const [cate, setCate] = useState<IProduct>();
+    const [cate, setCate] = useState<ICate>();
+    console.log(cate);
     useEffect(() => {
         const getProduct = async () => {
             const { data } = await listProductCate(slug);
+            console.log(data)
             setCate(data);
         }
         getProduct();
     }, [slug])
     console.log(cate)
-    // console.log(data)
+    
     return (
         <div className=' font-sans'>
             <div className='py-16 ml-36 font-[600] text-[#888] text-2xl'>Trang chủ / {cate?.name}</div>
