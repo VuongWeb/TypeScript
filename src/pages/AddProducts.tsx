@@ -37,7 +37,7 @@ const ProductAdd = (props: ProductAddProps) => {
                     <div>
                        <select className='w-full p-2 border-2 border-[#ccc] outline-none text-[#888] font-thin'{...register('cateId')}>
                            {props.categories.map((item)=>{
-                               return <option  value={`${item._id}`}>{item.name}</option>
+                               return <option  value={`${item.slug}`}>{item.name}</option>
                            })}
                        </select>
                     </div>

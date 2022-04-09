@@ -16,9 +16,10 @@ export type TForm = {
 
 
 const Header = (props: SiginProps) => {
+  
   const [status, setStatus] = useState(false);
   const [statusSigup, setStatusSigup] = useState(false);
-  const { register, handleSubmit, formState: { errors }, } = useForm<TForm>();
+  const { register, handleSubmit, formState: { errors } } = useForm<TForm>();
   const onSigin: SubmitHandler<TForm> = async (data) => {
     const { data: user } = await sigin(data);
     localStorage.setItem('user', JSON.stringify(user))
@@ -29,7 +30,7 @@ const Header = (props: SiginProps) => {
   return (
     <div>
       <header >
-        <div className='transition duration-300 flex justify-around p-3 opacity-90 leading-loose  hover:bg-[#ccc] hover:text-[#000] fixed w-full z-50 border-b-2 border-white duration-200'>
+        <div className='transition duration-300 flex justify-around p-3 opacity-90 leading-loose  hover:bg-[#888] hover:text-[#000] bg-[#000] w-full z-50 border-b-2 border-white duration-200'>
           <div className='logo'>
             <span className='text-4xl font-[800] leading-loose text-white '>Mixi.</span>
           </div>
@@ -41,7 +42,13 @@ const Header = (props: SiginProps) => {
               <NavLink to="/products" className='transition ease-in-out delay-300 duration-300 p-3 text-white font-[600] text-2xl no-underline hover:border-b-2 mx-2 hover:border-white '>Products Page</NavLink>
             </li>
             <li className="nav-item">
+              <NavLink to="/post" className='transition ease-in-out delay-300 duration-300 p-3 text-white font-[600] text-2xl no-underline hover:border-b-2 mx-2 hover:border-white '>Blog Page</NavLink>
+            </li>
+            <li className="nav-item">
               <NavLink to="/about" className='transition ease-in-out delay-300 duration-300 p-3 text-white font-[600] text-2xl no-underline  hover:border-b-2 mx-2 hover:border-white '>About page</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink to="/admin" className='transition ease-in-out delay-300 duration-300 p-3 text-white font-[600] text-2xl no-underline  hover:border-b-2 mx-2 hover:border-white '>Admin</NavLink>
             </li>
           </ul>
           <ul className="nav flex">

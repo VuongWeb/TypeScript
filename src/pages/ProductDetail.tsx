@@ -53,7 +53,7 @@ const ProductDetail = (props: cateProps) => {
             <h5 className='font-[600] text-red-600'>{product?.price}đ</h5>
             <h6 className='mt-8'>Khối lượng: 1kg</h6>
             <h6 className='mt-2'>Bảo quản: Túi tiệt trùng</h6><br />
-            <input type="number" min='1' className='my-3 outline-none border-2 p-3 rounded-lg mr-3' />
+            <input type="number" min='1'placeholder='0' className='my-3 outline-none border-2 border-black p-3 rounded-lg mr-3' />
             <button className='bg-blue-600 text-white p-3 rounded-2xl hover:bg-blue-700 '>Add to cart</button>
             <div className="contact border-2 p-4 mt-12  border-[#f59e0b]" style={{ position: 'relative' }}>
               <h3 className='rounded-lg  text-center text-white  bg-[#f59e0b] left-20 p-2 ' style={{ position: 'absolute', top: '-20px' }}>Chính sách khách hàng</h3>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route, NavLink, Navigate } from 'react-router-dom'
-import Products from './components/Products'
+
 
 import { add, list, remove, update } from './api/products'
 import { IProduct } from './types/products'
@@ -11,7 +11,6 @@ import AdminLayout from './pages/layout/AdminLayout'
 import Dashboard from './pages/Dashboard'
 import ProductManager from './pages/ProductsManager'
 import ProductAdd from './pages/AddProducts';
-import Header from './components/Header';
 import EditProduct from './pages/layout/EditProduct';
 import { AboutPage } from './pages/AboutPage'
 import CartPage from './pages/CartPage'
@@ -21,6 +20,7 @@ import { listCate, removeCate } from './api/category'
 import CateProductsPage from './pages/CateProductsPage'
 import CateManager from './pages/CateManager'
 import AddCate from './pages/AddCate'
+import PostPage from './pages/PostPage'
 
 function App() {
   const [products, setProducts] = useState<IProduct[]>([])
@@ -42,7 +42,7 @@ function App() {
   }, [])
 
 
-  ///====================remmove
+  ///====================REMOVE
   const removeItem = (id: number) => {
     //call api
     remove(id);
@@ -55,17 +55,16 @@ function App() {
     setCategories(categories.filter(item => item._id !== id))
   }
 
-  //============================add
+  //============================ADD
   const onHandleAdd = async (product: IProduct) => {
     const { data } = await add(product);
     setProducts([...products, data]);
   }
 
 
-  //=====================================update
+  //=====================================UPDATE
   const onHnadleUpdate = async (product: IProduct) => {
     const { data } = await update(product);
-    // console.log(data);
     setProducts(products.map(item => item._id == data._id ? data : item));
   }
 
@@ -80,6 +79,7 @@ function App() {
           </Route>
           <Route path='/category/:slug' element={<CateProductsPage products={products} categories={categories} />} />
           <Route path='about' element={<AboutPage />} />
+          <Route path='post' element={<PostPage />} />
           <Route path='cart' element={<CartPage />} />
         </Route>
         <Route path="*" element={<WebsiteLayout />} />
@@ -95,7 +95,6 @@ function App() {
             <Route index element={<CateManager listcate={categories} onDelete={HandleremoveCate}/>} />
             <Route path='add' element={<AddCate />} />
           </Route>
-          
         </Route>
       </Routes>
     </div>
