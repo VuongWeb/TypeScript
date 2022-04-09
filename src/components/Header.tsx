@@ -98,7 +98,7 @@ const Header = (props: SiginProps) => {
         </div>
       </header>
       <div className="banner">
-        <img width='100%' height='600' src="https://res.cloudinary.com/dkiw9eaeh/image/upload/v1648878529/wm9rhh2i3z9jrkjh6xnr.jpg" alt="" />
+        <img width='100%' height='600' src="https://cdn.pixabay.com/photo/2016/11/08/05/27/asia-1807538_960_720.jpg" alt="" />
       </div>
     </div>
   )

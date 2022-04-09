@@ -36,7 +36,7 @@ const CateProductsPage = (props: Props) => {
                             <li className='text-2xl font-[600] mb-8'>Danh mục </li>
                             {
                                 props.categories.map((item) => {
-                                    return <li className='py-2 hover:text-[#888] text-center'>
+                                    return <li className='py-2 hover:text-[#888] text-center' key={item.slug}>
                                         <NavLink to={`/category/${item.slug}`}>{item.name}</NavLink>
                                     </li>
                                 })

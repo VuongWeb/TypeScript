@@ -1,20 +1,29 @@
 import { Link } from 'react-router-dom'
 import { IProduct } from '../types/products'
-import Panigate from './layout/panigate'
+import Panigate from './layout/Panigate';
 import ListProducts from './ListProducts'
 
 type ProductsListProps = {
   products: IProduct[],
+  loading: boolean;
+  postPerPost: number;
+  totalPost: number,
+  panigate: (number:number) => void
 }
 
 const Home = (props: ProductsListProps) => {
+  if (props.loading) {
+    return <h2 className='text-center p-12 text-3xl'>Loading...</h2>
+  }
+  // console.log('props:',props);
+  
   return (
     <div>
       <h1 className='text-center py-24 font-[600] text-6xl '>Trang chủ</h1>
       {/* <ListProducts products={props}/> */}
       <div className='grid grid-cols-4 gap-8 w-5/6 mx-auto'>
         {props.products.map((item) => {
-          return <div className='products border-2 border-solid p-3 text-center'>
+          return <div className='products border-2 border-solid p-3 text-center' key={item._id}>
             <Link to={`/products/${item._id}`}>
               <img src={`${item.img}`} width='400' alt="" />
               <h2 className='font-[600] text-2xl py-3'>{item.name}</h2>
@@ -23,7 +32,7 @@ const Home = (props: ProductsListProps) => {
           </div>
         })}
       </div>
-      <Panigate/> 
+      <Panigate postPerPage={props.postPerPost} totalPost={props.totalPost} paginate={props.panigate}/>
       <h2 className="text-5xl font-[700] py-16 mb-16 border-b-4 border-cyan-500 ml-24 my-24 ">My Programs</h2>
       <div className='grid grid-cols-3 gap-4 mb-24 w-5/6 mx-auto my-24'>
         <div className='text-center'>

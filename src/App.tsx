@@ -21,26 +21,46 @@ import CateProductsPage from './pages/CateProductsPage'
 import CateManager from './pages/CateManager'
 import AddCate from './pages/AddCate'
 import PostPage from './pages/PostPage'
+import Panigate from './pages/layout/Panigate'
 
 function App() {
   const [products, setProducts] = useState<IProduct[]>([])
   const [categories, setCategories] = useState<ICate[]>([])
-
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage] = useState(4)
 
   // useEffect
   useEffect(() => {
+    //get products
     const getProudcts = async () => {
+      setLoading(true);
       const { data } = await list();
       setProducts(data);
+      setLoading(false);
     }
     getProudcts();
+
+    // get category
     const getCategories = async () => {
       const { data } = await listCate();
       setCategories(data)
     }
     getCategories();
+
+    //panigate
+
+
   }, [])
 
+  const indexOfLastPost = currentPage * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
+  const currentPost = products.slice(indexOfFirstPost, indexOfLastPost);
+
+
+  
+  //change panigate
+  const changePanigate = (pageNumber:number) =>setCurrentPage(pageNumber)
 
   ///====================REMOVE
   const removeItem = (id: number) => {
@@ -71,8 +91,9 @@ function App() {
   return (
     <div className="App font-mono">
       <Routes>
-        <Route path="/" element={<WebsiteLayout  />}>
-          <Route index element={<Home products={products} />} />
+        <Route path="/" element={<WebsiteLayout />}>
+          <Route index element={<Home postPerPost={postPerPage} products={currentPost} loading={loading} totalPost={products.length} panigate={changePanigate}/>} />
+          {/* <Panigate /> */}
           <Route path='products'>
             <Route index element={<ProductsPage categories={categories} products={products} />} />
             <Route path=':id' element={<ProductDetail categories={categories} />} />
@@ -92,8 +113,8 @@ function App() {
             <Route path=":id/edit" element={<EditProduct onUpdate={onHnadleUpdate} />} />
           </Route>
           <Route path='categories'>
-            <Route index element={<CateManager listcate={categories} onDelete={HandleremoveCate}/>} />
-            <Route path='add' element={<AddCate />} />
+            <Route index element={<CateManager listcate={categories} onDelete={HandleremoveCate} />} />
+            {/* <Route path='add' element={<AddCate />} /> */}
           </Route>
         </Route>
       </Routes>

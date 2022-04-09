@@ -11,9 +11,9 @@ type cateProps = {
 }
 type TInput = {
   name: String,
-  img:String,
-  price:Number,
-  quantity:Number,
+  img: String,
+  price: Number,
+  quantity: Number,
 
 }
 
@@ -29,7 +29,7 @@ const ProductDetail = (props: cateProps) => {
     getProduct();
   }, [id])
 
-  const { register, handleSubmit, formState: { errors } } = useForm <TInput>();
+  const { register, handleSubmit, formState: { errors } } = useForm<TInput>();
 
   return (
     // nullish : kiểm tra nếu product có dữ liệu thì cho phép truy cập vào thuộc tính name
@@ -46,7 +46,7 @@ const ProductDetail = (props: cateProps) => {
               <li className='text-2xl font-[600] mb-8'>Danh mục </li>
               {
                 props.categories.map((item) => {
-                  return <li className='py-2 hover:text-[#888] text-center'>
+                  return <li className='py-2 hover:text-[#888] text-center' key={item._id}>
                     <NavLink to={`/category/${item.slug}`}>{item.name}</NavLink>
                   </li>
                 })
@@ -64,8 +64,10 @@ const ProductDetail = (props: cateProps) => {
             <h5 className='font-[600] text-red-600'>{product?.price}đ</h5>
             <h6 className='mt-8'>Khối lượng: 1kg</h6>
             <h6 className='mt-2'>Bảo quản: Túi tiệt trùng</h6><br />
-            <input type="number" min='1' placeholder='0' className='my-3 outline-none border-2 border-black p-3 rounded-lg mr-3' />
-            <button className='bg-blue-600 text-white p-3 rounded-2xl hover:bg-blue-700 '>Add to cart</button>
+            <form >
+              <input type="number" min='1' placeholder='0' className='my-3 outline-none border-2 border-black p-3 rounded-lg mr-3' />
+              <button className='bg-blue-600 text-white p-3 rounded-2xl hover:bg-blue-700 '>Add to cart</button>
+            </form>
             <div className="contact border-2 p-4 mt-12  border-[#f59e0b]" style={{ position: 'relative' }}>
               <h3 className='rounded-lg  text-center text-white  bg-[#f59e0b] left-20 p-2 ' style={{ position: 'absolute', top: '-20px' }}>Chính sách khách hàng</h3>
               <ul>
