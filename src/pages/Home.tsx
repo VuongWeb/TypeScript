@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { IProduct } from '../types/products'
+import Panigate from './layout/panigate'
 import ListProducts from './ListProducts'
 
 type ProductsListProps = {
@@ -22,6 +23,7 @@ const Home = (props: ProductsListProps) => {
           </div>
         })}
       </div>
+      <Panigate/> 
       <h2 className="text-5xl font-[700] py-16 mb-16 border-b-4 border-cyan-500 ml-24 my-24 ">My Programs</h2>
       <div className='grid grid-cols-3 gap-4 mb-24 w-5/6 mx-auto my-24'>
         <div className='text-center'>
@@ -67,6 +69,7 @@ const Home = (props: ProductsListProps) => {
           <img src="https://uicookies.com/demo/theme/resto/img/img_1.jpg" alt="" className='hover:scale-125 ease-in-out duration-300 ' />
         </div>
       </div>
+
     </div>
   )
 }

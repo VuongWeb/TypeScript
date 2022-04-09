@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useForm, Submithandler } from 'react-hook-form'
+import { useForm, SubmitHandler } from 'react-hook-form'
 import { IProduct } from '../types/products';
 
 type Props = {

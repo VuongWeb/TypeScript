@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useForm, SubmitHandler } from "react-hook-form";
 // import { useNavigate } from 'react-router-dom';
+// import toastr from 'toastr.';
 import { sigin, sigup } from '../api/auth';
 
 type SiginProps = {
@@ -30,25 +31,25 @@ const Header = (props: SiginProps) => {
   return (
     <div>
       <header >
-        <div className='transition duration-300 flex justify-around p-3 opacity-90 leading-loose  hover:bg-[#888] hover:text-[#000] bg-[#000] w-full z-50 border-b-2 border-white duration-200'>
+        <div className='transition duration-300 flex justify-around p-3 opacity-90 leading-loose  hover:bg-[#ccc] hover:text-[#000] bg-[#fff] w-full z-50 border-b-2 border-white duration-200'>
           <div className='logo'>
-            <span className='text-4xl font-[800] leading-loose text-white '>Mixi.</span>
+            <span className='text-4xl font-[800] leading-loose text-black '>Mixi.</span>
           </div>
           <ul className="nav mt-7 flex">
             <li className="nav-item">
-              <NavLink to="/" className='transition ease-in-out delay-300 duration-300 p-3  text-white font-[600] text-2xl no-underline hover:border-b-2 mx-2 hover:border-white  '>HomePage</NavLink>
+              <NavLink to="/" className='transition ease-in-out delay-300 duration-150 p-3  text-black font-[600] text-2xl no-underline hover:border-b-4 mx-2 hover:border-black  '>HomePage</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/products" className='transition ease-in-out delay-300 duration-300 p-3 text-white font-[600] text-2xl no-underline hover:border-b-2 mx-2 hover:border-white '>Products Page</NavLink>
+              <NavLink to="/products" className='transition ease-in-out delay-150 duration-300 p-3 text-black font-[600] text-2xl no-underline hover:border-b-4 mx-2 hover:border-black '>Products Page</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/post" className='transition ease-in-out delay-300 duration-300 p-3 text-white font-[600] text-2xl no-underline hover:border-b-2 mx-2 hover:border-white '>Blog Page</NavLink>
+              <NavLink to="/post" className='transition ease-in-out delay-150 duration-300 p-3 text-black font-[600] text-2xl no-underline hover:border-b-4 mx-2 hover:border-black '>Blog Page</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/about" className='transition ease-in-out delay-300 duration-300 p-3 text-white font-[600] text-2xl no-underline  hover:border-b-2 mx-2 hover:border-white '>About page</NavLink>
+              <NavLink to="/about" className='transition ease-in-out delay-150 duration-300 p-3 text-black font-[600] text-2xl no-underline  hover:border-b-4 mx-2 hover:border-black '>About page</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/admin" className='transition ease-in-out delay-300 duration-300 p-3 text-white font-[600] text-2xl no-underline  hover:border-b-2 mx-2 hover:border-white '>Admin</NavLink>
+              <NavLink to="/admin" className='transition ease-in-out delay-150 duration-300 p-3 text-whitblack font-[600] text-2xl no-underline  hover:border-b-4 mx-2 hover:border-black '>Admin</NavLink>
             </li>
           </ul>
           <ul className="nav flex">
@@ -56,7 +57,7 @@ const Header = (props: SiginProps) => {
               <button className='mt-8' onClick={() => {
                 setStatus(!status);
                 console.log(status)
-              }}><svg xmlns="http://www.w3.org/2000/svg" className="text-white  h-6 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              }}><svg xmlns="http://www.w3.org/2000/svg" className="text-black  h-6 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg></button>
               {status ? <div className="sigin bg-[#fff] p-3 fixed right-24 top-20">
@@ -73,7 +74,7 @@ const Header = (props: SiginProps) => {
               <button className='mt-8' onClick={() => {
                 setStatusSigup(!statusSigup);
                 console.log(statusSigup)
-              }}><svg xmlns="http://www.w3.org/2000/svg" className="text-white  h-6 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              }}><svg xmlns="http://www.w3.org/2000/svg" className="text-black  h-6 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
                 </svg></button>
               {statusSigup ? <div className="sigin bg-[#fff] p-3 fixed right-24 top-20">
@@ -87,10 +88,11 @@ const Header = (props: SiginProps) => {
                 </form>
               </div> : ""}
             </li>
-            <li className="nav-item mx-3">
-              <NavLink to="/cart" className='nav-link p-3'><svg xmlns="http://www.w3.org/2000/svg" className="text-white h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <li className="nav-item mx-3 relative">
+              <NavLink to="/cart" className='nav-link p-3 z-20'><svg xmlns="http://www.w3.org/2000/svg" className="text-black h-6 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg></NavLink>
+              </svg><span className='text-white  absolute top-5 left-4 z-10  bg-red-600 rounded-full px-2 text-[12px]'>0</span>
+              </NavLink>
             </li>
           </ul>
         </div>
