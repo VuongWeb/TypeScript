@@ -6,7 +6,7 @@ let user;
 if(localStorage.getItem('user')){
     user = JSON.parse(localStorage.getItem('user'));
 }
-// const {token ,user : getUser} = user;
+const {token ,user : getUser} = user;
 
 
 export const list = () => {
