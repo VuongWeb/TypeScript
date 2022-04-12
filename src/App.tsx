@@ -22,10 +22,13 @@ import CateManager from './pages/CateManager'
 import AddCate from './pages/AddCate'
 import PostPage from './pages/PostPage'
 import Panigate from './pages/layout/Panigate'
+import { listPost } from './api/post'
+import { TPost } from './types/post'
 
 function App() {
   const [products, setProducts] = useState<IProduct[]>([])
   const [categories, setCategories] = useState<ICate[]>([])
+  const [post,setPost] = useState<TPost[]>([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage] = useState(4)
@@ -48,8 +51,12 @@ function App() {
     }
     getCategories();
 
-    //panigate
-
+    //get post
+    const getPost =  async () =>{
+      const {data} = await listPost();
+      setPost(data)
+    }
+    getPost();
 
   }, [])
 
@@ -98,9 +105,9 @@ function App() {
             <Route index element={<ProductsPage categories={categories} products={products} />} />
             <Route path=':id' element={<ProductDetail categories={categories} />} />
           </Route>
-          <Route path='/category/:slug' element={<CateProductsPage products={products} categories={categories} />} />
+          <Route path='/category/:id' element={<CateProductsPage products={products} categories={categories} />} />
           <Route path='about' element={<AboutPage />} />
-          <Route path='post' element={<PostPage />} />
+          <Route path='post' element={<PostPage post={post} />} />
           <Route path='cart' element={<CartPage />} />
         </Route>
         <Route path="*" element={<WebsiteLayout />} />

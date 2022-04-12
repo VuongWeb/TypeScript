@@ -10,7 +10,7 @@ export const removeCate = (id: number) => {
     return instance.delete(url);
 }
 
-export const listProductCate = (slug: string) => {
-    const url = `/category/${slug}`;
+export const listProductCate = (id: number | string) => {
+    const url = `/category/${id}`;
     return instance.get(url);
 }

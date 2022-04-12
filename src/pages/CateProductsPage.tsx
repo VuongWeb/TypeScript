@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ICate } from '../types/cate'
-import { NavLink, useParams ,Link} from 'react-router-dom';
+import { NavLink, useParams, Link } from 'react-router-dom';
 import { IProduct } from '../types/products';
 import { listProductCate } from '../api/category';
 
@@ -10,18 +10,20 @@ type Props = {
 }
 
 const CateProductsPage = (props: Props) => {
-    const { slug } = useParams();
-    const [cate, setCate] = useState<ICate>();
+    const { id  } = useParams();
+    const [cate, setCate] = useState<ICate[]>([]);
+
+    console.log(id);
     console.log(cate);
+    
     useEffect(() => {
         const getProduct = async () => {
-            const { data } = await listProductCate(slug);
-            console.log(data)
-            setCate(data);
+            const { data } = await listProductCate(id);
+            setCate(...cate,data);
         }
         getProduct();
-    }, [slug])
-    console.log(cate)
+    }, [])
+    console.log(cate);
     
     return (
         <div className=' font-sans'>
@@ -36,8 +38,8 @@ const CateProductsPage = (props: Props) => {
                             <li className='text-2xl font-[600] mb-8'>Danh mục </li>
                             {
                                 props.categories.map((item) => {
-                                    return <li className='py-2 hover:text-[#888] text-center' key={item.slug}>
-                                        <NavLink to={`/category/${item.slug}`}>{item.name}</NavLink>
+                                    return <li className='py-2 hover:text-[#888] text-center' key={item._id}>
+                                        <NavLink to={`/category/${item._id}`}>{item.name}</NavLink>
                                     </li>
                                 })
                             }

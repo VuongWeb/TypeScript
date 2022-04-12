@@ -3,6 +3,7 @@ import { IProduct } from '../types/products';
 import { useNavigate } from 'react-router-dom';
 import { ICate } from '../types/cate';
 
+
 type ProductAddProps = {
     onAdd: (product: IProduct) => void,
     categories: ICate[];
@@ -19,7 +20,8 @@ const ProductAdd = (props: ProductAddProps) => {
     const Navigate = useNavigate();
     const onSubmit: SubmitHandler<TInputs> = (data) => {
         props.onAdd(data)
-        // Navigate('/admin/products')
+
+        Navigate('/admin/products')
     }
     return (
         <div>
@@ -37,7 +39,7 @@ const ProductAdd = (props: ProductAddProps) => {
                     <div>
                        <select className='w-full p-2 border-2 border-[#ccc] outline-none text-[#888] font-thin'{...register('cateId')}>
                            {props.categories.map((item)=>{
-                               return <option  value={`${item.slug}`} key={item.slug}>{item.name}</option>
+                               return <option  value={`${item._id}`} key={item._id}>{item.name}</option>
                            })}
                        </select>
                     </div>

@@ -23,7 +23,7 @@ const ProductsPage = (props: Productsprops) => {
               {
                 props.categories.map((item) => {
                   return <li className='py-2 hover:text-[#888] text-center' key={item._id}>
-                    <NavLink to={`/category/${item.slug}`}>{item.name}</NavLink>
+                    <NavLink to={`/category/${item._id}`}>{item.name}</NavLink>
                   </li>
                 })
               }

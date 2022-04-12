@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useForm, SubmitHandler } from "react-hook-form";
 // import { useNavigate } from 'react-router-dom';
@@ -17,17 +17,43 @@ export type TForm = {
 
 
 const Header = (props: SiginProps) => {
-  
+
   const [status, setStatus] = useState(false);
   const [statusSigup, setStatusSigup] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm<TForm>();
+
+  const user = localStorage.getItem('user');
+  // console.log(user);
+  
+
+  useEffect(() => {
+    const showAdmin = () =>{
+       const isAdmin = document.querySelector('#admin');
+       if(user){
+         console.log(user);
+         
+        //  if(JSON.parse(localStorage.getItem('user')).role == 1){
+        //    isAdmin?.innerHTML = `<NavLink to='/admin' className='transition ease-in-out delay-150 duration-300 p-3 text-whitblack font-[600] text-2xl no-underline  hover:border-b-4 mx-2 hover:border-black '>Admin</NavLink>`
+        //  }else{
+        //    isAdmin?.innerHTML ='';
+        //  }
+       }
+    }
+    showAdmin()
+  })
+
+  //signin
   const onSigin: SubmitHandler<TForm> = async (data) => {
     const { data: user } = await sigin(data);
     localStorage.setItem('user', JSON.stringify(user))
   }
+
+  //signup
   const onSigup: SubmitHandler<TForm> = (data) => {
     sigup(data);
   }
+
+
   return (
     <div>
       <header >
@@ -48,8 +74,8 @@ const Header = (props: SiginProps) => {
             <li className="nav-item">
               <NavLink to="/about" className='transition ease-in-out delay-150 duration-300 p-3 text-black font-[600] text-2xl no-underline  hover:border-b-4 mx-2 hover:border-black '>About page</NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink to="/admin" className='transition ease-in-out delay-150 duration-300 p-3 text-whitblack font-[600] text-2xl no-underline  hover:border-b-4 mx-2 hover:border-black '>Admin</NavLink>
+            <li className="nav-item" id='admin'>
+              {/* <NavLink to="/admin" className='transition ease-in-out delay-150 duration-300 p-3 text-whitblack font-[600] text-2xl no-underline  hover:border-b-4 mx-2 hover:border-black '>Admin</NavLink> */}
             </li>
           </ul>
           <ul className="nav flex">
@@ -88,6 +114,9 @@ const Header = (props: SiginProps) => {
                 </form>
               </div> : ""}
             </li>
+
+
+            
             <li className="nav-item mx-3 relative">
               <NavLink to="/cart" className='nav-link p-3 z-20'><svg xmlns="http://www.w3.org/2000/svg" className="text-black h-6 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
