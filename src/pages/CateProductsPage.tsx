@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { ICate } from '../types/cate'
 import { NavLink, useParams, Link } from 'react-router-dom';
 import { IProduct } from '../types/products';
-import { listProductCate } from '../api/category';
+import { readCate } from '../api/category';
 
 type Props = {
     categories: ICate[];
@@ -10,24 +10,24 @@ type Props = {
 }
 
 const CateProductsPage = (props: Props) => {
-    const { id  } = useParams();
-    const [cate, setCate] = useState<ICate[]>([]);
+    const { id } = useParams();
+    const [cate, setCate] = useState([]);
 
     console.log(id);
-    console.log(cate);
-    
+
     useEffect(() => {
         const getProduct = async () => {
-            const { data } = await listProductCate(id);
-            setCate(...cate,data);
+            const { data } = await readCate(id);
+            setCate(data);
         }
         getProduct();
-    }, [])
-    console.log(cate);
+    }, [id])
+    console.log('cate:', cate);
     
+
     return (
         <div className=' font-sans'>
-            <div className='py-16 ml-36 font-[600] text-[#888] text-2xl'>Trang chủ / {cate?.name}</div>
+            <div className='py-16 ml-36 font-[600] text-[#888] text-2xl'>Trang chủ / {}</div>
             <div className="container flex w-5/6 mx-auto">
                 <div className="cate bg-[#ccc]">
                     <div className="search p-4 mt-12 ">
@@ -51,7 +51,7 @@ const CateProductsPage = (props: Props) => {
                     <div className="products grid grid-cols-3">
                         {
                             cate.products.map((item) => {
-                                return <div className=' w-5/6 mx-auto'>
+                                return <div className=' w-5/6 mx-auto' key={item._id}>
                                     <div className='products border-2 border-solid p-3 text-center my-8'>
                                         <Link to={`/products/${item._id}`}>
                                             <img src={`${item.img}`} width='400' alt="" />

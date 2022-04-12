@@ -21,6 +21,8 @@ const ProductDetail = (props: cateProps) => {
 
   const { id } = useParams();
   const [product, setProduct] = useState<IProduct>();
+  // console.log( 'products detail:',product);
+  
   useEffect(() => {
     const getProduct = async () => {
       const { data } = await read(id);
@@ -28,6 +30,8 @@ const ProductDetail = (props: cateProps) => {
     }
     getProduct();
   }, [id])
+
+  // console.log('product',product);
 
   const { register, handleSubmit, formState: { errors } } = useForm<TInput>();
 

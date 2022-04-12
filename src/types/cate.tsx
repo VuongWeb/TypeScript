@@ -1,4 +1,5 @@
-export interface ICate{
-    _id: number |string, 
-    name: string
+export interface ICate {
+    _id: number | string,
+    name: string,
+    products?: []
 }
