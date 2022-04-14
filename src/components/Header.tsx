@@ -18,23 +18,29 @@ const Header = (props: SiginProps) => {
 
   const [status, setStatus] = useState(false);
   const [statusSigup, setStatusSigup] = useState(false);
+  const [userRerender, setUserRerender] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm<TForm>();
-  
-  //  const user = JSON.parse(localStorage.getItem('user')).user ;
+
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  useEffect(() => {
+
+  }, [userRerender])
 
   //signin
   const onSigin: SubmitHandler<TForm> = async (data) => {
     const { data: user } = await sigin(data);
     localStorage.setItem('user', JSON.stringify(user));
+    setUserRerender(true)
   }
 
   //signup
   const onSigup: SubmitHandler<TForm> = (data) => {
     sigup(data);
+    setUserRerender(false)
     const navigate = useNavigate();
     navigate('/');
   }
-
 
   return (
     <div>
@@ -57,16 +63,19 @@ const Header = (props: SiginProps) => {
               <NavLink to="/about" className='transition ease-in-out delay-150 duration-300 p-3 text-black font-[600] text-2xl no-underline  hover:border-b-4 mx-2 hover:border-black '>About page</NavLink>
             </li>
             {/* signin  */}
-            {user && user.role == 1 ? <li className="nav-item" id='admin' >
+            {user?.user && user?.user.role == 1 ? <li className="nav-item" id='admin' >
               <NavLink to="/admin" className='transition ease-in-out delay-150 duration-300 p-3 text-whitblack font-[600] text-2xl no-underline  hover:border-b-4 mx-2 hover:border-black '>Admin</NavLink>
             </li> : ''}
           </ul>
           <ul className="nav flex">
 
-            {user ? <div className='flex'><li className="nav-item transition ease-in-out delay-150 duration-300 mt-7 text-black font-[600] text-2xl no-underline">{user?.name}
+            {user?.user ? <div className='flex'><li className="nav-item transition ease-in-out delay-150 duration-300 mt-7 text-black font-[600] text-2xl no-underline">{user?.user.name}
             </li>
               <li className="nav-item transition ease-in-out delay-150 duration-300 mt-8 text-black font-[600] text-2xl no-underline ml-3 ">
-                <button onClick={()=>localStorage.removeItem('user')}>
+                <button onClick={() => {
+                    localStorage.removeItem('user'); const navigate = useNavigate();
+                    navigate('/');
+                }}>
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                   </svg>
@@ -88,12 +97,14 @@ const Header = (props: SiginProps) => {
                   </form>
                 </div> : ""}
               </li>
+
               <li className="nav-item mx-3" title='Đăng ký'>
                 <button className='mt-8' onClick={() => {
                   setStatusSigup(!statusSigup);
                 }}><svg xmlns="http://www.w3.org/2000/svg" className="text-black  h-6 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
                   </svg></button>
+
                 {statusSigup ? <div className="sigin bg-[#fff] p-3 fixed right-24 top-20">
                   <h2 className='text-center text-xl py-4'>Đăng Ký</h2>
                   <form action="" onSubmit={handleSubmit(onSigup)} className='p-4'>
@@ -104,6 +115,8 @@ const Header = (props: SiginProps) => {
                     <button className='bg-[#888] p-2 rounded-xl mx-auto text-white'>Đăng Ký</button>
                   </form>
                 </div> : ""}
+
+
               </li>
             </div>}
 
