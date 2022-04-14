@@ -117,7 +117,7 @@ function App() {
           <Route path="products">
             <Route index element={<ProductManager onRemove={removeItem} products={products} />} />
             <Route path="add" element={<ProductAdd categories={categories} onAdd={onHandleAdd} />} />
-            <Route path=":id/edit" element={<EditProduct onUpdate={onHnadleUpdate} />} />
+            <Route path=":id/edit" element={<EditProduct onUpdate={onHnadleUpdate} categories={categories} />} />
           </Route>
           <Route path='categories'>
             <Route index element={<CateManager listcate={categories} onDelete={HandleremoveCate} />} />

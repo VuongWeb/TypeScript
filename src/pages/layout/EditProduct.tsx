@@ -2,15 +2,19 @@ import { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import { read } from '../../api/products';
+import { ICate } from '../../types/cate';
 import { IProduct } from '../../types/products';
 
 type ProductsProps = {
-  onUpdate: (product : IProduct) => void
+  onUpdate: (product : IProduct) => void;
+  categories: ICate[];
+
 }
 type FormInput = {
   name: String,
   price: number,
-  img:String
+  img:String,
+  category:String
 }
 const EditProduct = (props: ProductsProps) => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm<FormInput>();
@@ -43,8 +47,15 @@ const EditProduct = (props: ProductsProps) => {
                         <input type="text" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Ảnh sản phẩm (url)" {...register('img', { required: true })}  />
                     </div>
                     <div>
+                       <select className='w-full p-2 border-2 border-[#ccc] outline-none text-[#888] font-thin'{...register('category')}>
+                           {props.categories.map((item)=>{
+                               return <option  value={`${item._id}`} key={item._id}>{item.name}</option>
+                           })}
+                       </select>
+                    </div>
+                    <div>
                         <label className="sr-only">Giá sản phẩm</label>
-                        <input type="number" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Giá sản phẩm" {...register('price')}/>
+                        <input type="number" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Giá sản phẩm" {...register('price', { required: true })}/>
                     </div>
                 </div>
                 <div>

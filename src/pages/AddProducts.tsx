@@ -21,7 +21,7 @@ const ProductAdd = (props: ProductAddProps) => {
     const Navigate = useNavigate();
     const onSubmit: SubmitHandler<TInputs> = (data) => {
         props.onAdd(data)
-        toastr.success('Thêm thành công !')
+        // toastr.success('Thêm thành công !')
         setTimeout(()=>{
             Navigate('/admin/products')
         },2000)
@@ -34,11 +34,11 @@ const ProductAdd = (props: ProductAddProps) => {
                 <div className="rounded-md shadow-sm -space-y-px">
                     <div>
                         <label className="sr-only">Tên sản phẩm</label>
-                        <input type="text" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Tên sản phẩm" {...register('name')} />
+                        <input type="text" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Tên sản phẩm" {...register('name',{required:true})} />
                     </div>
                     <div>
                         <label className="sr-only">Ảnh sản phẩm</label>
-                        <input type="text" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Ảnh sản phẩm (url)" {...register('img')} />
+                        <input type="text" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Ảnh sản phẩm (url)" {...register('img',{required:true})} />
                     </div>
                     <div>
                        <select className='w-full p-2 border-2 border-[#ccc] outline-none text-[#888] font-thin'{...register('category')}>
@@ -49,7 +49,7 @@ const ProductAdd = (props: ProductAddProps) => {
                     </div>
                     <div>
                         <label className="sr-only">Giá sản phẩm</label>
-                        <input type="number" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Giá sản phẩm" {...register('price')}/>
+                        <input type="number" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Giá sản phẩm" {...register('price',{required:true})}/>
                     </div>
                 </div>
                 <div>

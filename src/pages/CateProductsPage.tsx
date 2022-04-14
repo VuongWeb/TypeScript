@@ -23,11 +23,11 @@ const CateProductsPage = (props: Props) => {
         getProduct();
     }, [id])
     console.log('cate:', cate);
-    
+
 
     return (
         <div className=' font-sans'>
-            <div className='py-16 ml-36 font-[600] text-[#888] text-2xl'>Trang chủ / {}</div>
+            <div className='py-16 ml-36 font-[600] text-[#888] text-2xl'>Trang chủ / {cate?.name}</div>
             <div className="container flex w-5/6 mx-auto">
                 <div className="cate bg-[#ccc]">
                     <div className="search p-4 mt-12 ">
@@ -43,14 +43,13 @@ const CateProductsPage = (props: Props) => {
                                     </li>
                                 })
                             }
-
                         </ul>
                     </div>
                 </div>
                 <div className='flex w-5/6 p-12 mx-auto gap-8 ml-16'>
                     <div className="products grid grid-cols-3">
                         {
-                            cate.products.map((item) => {
+                            cate.products && cate?.products.map((item) => {
                                 return <div className=' w-5/6 mx-auto' key={item._id}>
                                     <div className='products border-2 border-solid p-3 text-center my-8'>
                                         <Link to={`/products/${item._id}`}>

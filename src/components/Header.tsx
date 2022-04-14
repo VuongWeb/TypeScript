@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useForm, SubmitHandler } from "react-hook-form";
-// import { useNavigate } from 'react-router-dom';
-// import toastr from 'toastr.';
 import { sigin, sigup } from '../api/auth';
 
 type SiginProps = {
@@ -21,30 +19,13 @@ const Header = (props: SiginProps) => {
   const [status, setStatus] = useState(false);
   const [statusSigup, setStatusSigup] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm<TForm>();
-
-  let user = false;
-  let isAdmin = false
-
-
-  useEffect(() => {
-    const setSigin = () => {
-      if (localStorage.getItem('user')) {
-        user = JSON.parse(localStorage.getItem('user')).user;
-        isAdmin = JSON.parse(localStorage.getItem('user')).user.role == 1;
-      }
-    }
-    setSigin();
-    console.log('user', user);
-    console.log('isAdmin', isAdmin);
-
-  })
-  console.log('user', user);
-  console.log('isAdmin', isAdmin);
+  
+  //  const user = JSON.parse(localStorage.getItem('user')).user ;
 
   //signin
   const onSigin: SubmitHandler<TForm> = async (data) => {
     const { data: user } = await sigin(data);
-    localStorage.setItem('user', JSON.stringify(user))
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
   //signup
@@ -76,18 +57,20 @@ const Header = (props: SiginProps) => {
               <NavLink to="/about" className='transition ease-in-out delay-150 duration-300 p-3 text-black font-[600] text-2xl no-underline  hover:border-b-4 mx-2 hover:border-black '>About page</NavLink>
             </li>
             {/* signin  */}
-            {isAdmin ? <li className="nav-item" id='admin' >
+            {user && user.role == 1 ? <li className="nav-item" id='admin' >
               <NavLink to="/admin" className='transition ease-in-out delay-150 duration-300 p-3 text-whitblack font-[600] text-2xl no-underline  hover:border-b-4 mx-2 hover:border-black '>Admin</NavLink>
             </li> : ''}
           </ul>
           <ul className="nav flex">
 
-            {user ? <div className='flex'> <li className="nav-item transition ease-in-out delay-150 duration-300 mt-7 text-black font-[600] text-2xl no-underline">{user}
+            {user ? <div className='flex'><li className="nav-item transition ease-in-out delay-150 duration-300 mt-7 text-black font-[600] text-2xl no-underline">{user?.name}
             </li>
               <li className="nav-item transition ease-in-out delay-150 duration-300 mt-8 text-black font-[600] text-2xl no-underline ml-3 ">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                </svg>
+                <button onClick={()=>localStorage.removeItem('user')}>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                  </svg>
+                </button>
               </li>
             </div> : <div className='flex'>
               <li className="nav-item mx-3" title='Đăng nhập'>
@@ -101,7 +84,7 @@ const Header = (props: SiginProps) => {
                   <form action="" onSubmit={handleSubmit(onSigin)} className='p-4'>
                     <input type="text" placeholder='Tên đăng nhập' className='p-2 my-2 border-2 outline-none' {...register('email')} /><br />
                     <input type="password" placeholder='Pass word ' className='p-2 my-2 border-2 outline-none' {...register('password')} /><br />
-                    <button className='bg-[#888] p-2 rounded-xl mx-auto text-white'>đăng nhập</button>
+                    <button className='bg-[#888] p-2 rounded-xl mx-auto text-white'>Đăng nhập</button>
                   </form>
                 </div> : ""}
               </li>
@@ -118,16 +101,11 @@ const Header = (props: SiginProps) => {
                     <input type="text" placeholder='Họ và Tên' className='p-2 my-2 border-2 outline-none' {...register('name')} /><br />
                     {/* {errors.name && <span className='text-red-600'>Name is required</span>} */}
                     <input type="password" placeholder='Pass word ' className='p-2 my-2 border-2 outline-none' {...register('password')} /><br />
-                    <button className='bg-[#888] p-2 rounded-xl mx-auto text-white'>đăng Ký</button>
+                    <button className='bg-[#888] p-2 rounded-xl mx-auto text-white'>Đăng Ký</button>
                   </form>
                 </div> : ""}
               </li>
             </div>}
-
-
-
-
-
 
 
             <li className="nav-item mx-3 relative">
