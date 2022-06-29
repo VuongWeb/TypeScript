@@ -10,7 +10,9 @@ export const removeCate = (id: number) => {
     return instance.delete(url);
 }
 
-export const readCate = (id: string | undefined) => {
-    const url = `/category/${id}`;
+
+
+export const productsOfCate = (id: string | undefined) => {
+    const url = `/category/${id}?_embed=products`;
     return instance.get(url);
 }

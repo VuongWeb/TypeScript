@@ -1,4 +1,4 @@
-export type TAuth ={
+export interface TAuth {
     email:String,
     password:String,
 }

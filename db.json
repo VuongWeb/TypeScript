@@ -3,10 +3,12 @@
     {
       "name": "Lê Văn Vương",
       "price": "3000",
+      "categoryId":1,
       "img": "https://shop.mixigaming.com/wp-content/uploads/2021/01/Ao-phong-Mixi-Phong-Stream-scaled.jpg",
       "id": 5
     },
     {
+      "categoryId":1,
       "name": "Khô gà 1",
       "img": "https://res.cloudinary.com/dkiw9eaeh/image/upload/v1645421976/zie60bpxwr3xwyn0mvdm.jpg",
       "price": "120000111",
@@ -14,21 +16,35 @@
     },
     {
       "name": "Thảo quả update",
+      "categoryId":1,
+
       "img": "https://shop.mixigaming.com/wp-content/uploads/2021/01/Ao-phong-Mixi-Phong-Stream-scaled.jpg",
       "price": "3000",
       "id": 7
     },
     {
+      "categoryId":1,
       "name": "Thảo quả update",
       "img": "https://shop.mixigaming.com/wp-content/uploads/2021/01/Ao-phong-Mixi-Phong-Stream-scaled.jpg",
       "price": "3000",
       "id": 8
     },
     {
+      "categoryId":1,
       "name": "Lê Văn Vương",
       "img": "https://res.cloudinary.com/dkiw9eaeh/image/upload/v1645421976/zie60bpxwr3xwyn0mvdm.jpg",
       "price": "3000",
       "id": 9
+    }
+  ],
+  "categories":[
+    {
+      "id":1,
+      "name":"quần áo"
+    },
+    {
+      "id":2,
+      "name":"giày dép"
     }
   ],
   "users": []

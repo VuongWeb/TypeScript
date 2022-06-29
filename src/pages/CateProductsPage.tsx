@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { ICate } from '../types/cate'
 import { NavLink, useParams, Link } from 'react-router-dom';
 import { IProduct } from '../types/products';
-import { readCate } from '../api/category';
+import { productsOfCate } from '../api/category';
 
 type Props = {
     categories: ICate[];
@@ -17,7 +17,7 @@ const CateProductsPage = (props: Props) => {
 
     useEffect(() => {
         const getProduct = async () => {
-            const { data } = await readCate(id);
+            const { data } = await productsOfCate(id);
             setCate(data);
         }
         getProduct();

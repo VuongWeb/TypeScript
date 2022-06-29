@@ -4,9 +4,9 @@ import instance from "./instance";
 
 let user;
 if(localStorage.getItem('user')){
-    user = JSON.parse(localStorage.getItem('user'));
+    user = JSON.parse(localStorage.getItem('user')!);
 }
-// const {token ,user : getUser} = user;
+// const {user : getUser} = user;
 
 
 export const list = () => {

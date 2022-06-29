@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useForm, SubmitHandler } from "react-hook-form";
 import { sigin, sigup } from '../api/auth';
+import { TAuth } from '../types/auth';
 
 type SiginProps = {
   onSigin: (user: TForm) => void
@@ -21,21 +22,26 @@ const Header = (props: SiginProps) => {
   const [userRerender, setUserRerender] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm<TForm>();
 
-  const user = JSON.parse(localStorage.getItem('user'));
-
+  const user = JSON.parse(localStorage.getItem('user')!);
+  // const user = {
+  //   user: {
+  //     name: 'user',
+  //     role: 0
+  //   }
+  // }/
   useEffect(() => {
 
   }, [userRerender])
 
   //signin
-  const onSigin: SubmitHandler<TForm> = async (data) => {
+  const onSigin: SubmitHandler<TForm> = async (data: TForm) => {
     const { data: user } = await sigin(data);
     localStorage.setItem('user', JSON.stringify(user));
     setUserRerender(true)
   }
 
   //signup
-  const onSigup: SubmitHandler<TForm> = (data) => {
+  const onSigup: SubmitHandler<TForm> = (data: TForm) => {
     sigup(data);
     setUserRerender(false)
     const navigate = useNavigate();
@@ -73,8 +79,8 @@ const Header = (props: SiginProps) => {
             </li>
               <li className="nav-item transition ease-in-out delay-150 duration-300 mt-8 text-black font-[600] text-2xl no-underline ml-3 ">
                 <button onClick={() => {
-                    localStorage.removeItem('user'); const navigate = useNavigate();
-                    navigate('/');
+                  localStorage.removeItem('user'); const navigate = useNavigate();
+                  navigate('/');
                 }}>
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
