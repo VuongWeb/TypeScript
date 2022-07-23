@@ -3,7 +3,7 @@ import instance from "./instance";
 
 
 let user;
-if(localStorage.getItem('user')){
+if (localStorage.getItem('user')) {
     user = JSON.parse(localStorage.getItem('user')!);
 }
 // const {user : getUser} = user;
@@ -22,16 +22,18 @@ export const read = (id: string | undefined) => {
     return instance.get(url);
 }
 
-export const add = (product:IProduct) => {
-    const url = `/products/${getUser._id}`;
-    return instance.post(url,product,{
-        headers:{
-            "Authorization":`Bearer ${token}`
-        }
-    });
+export const add = (product: IProduct) => {
+    // const url = `/products/${getUser._id}`;
+    // return instance.post(url,product,{
+    //     headers:{
+    //         "Authorization":`Bearer ${token}`
+    //     }
+    // });
+    const url = `products`
+    return instance.post(url, product)
 }
 
-export const update = (product:IProduct) => {
+export const update = (product: IProduct) => {
     const url = `/products/${product._id}`;
-    return instance.put(url,product);
+    return instance.put(url, product);
 }

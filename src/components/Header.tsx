@@ -5,7 +5,7 @@ import { sigin, sigup } from '../api/auth';
 import { TAuth } from '../types/auth';
 
 type SiginProps = {
-  onSigin: (user: TForm) => void
+  // onSigin: (user: TForm) => void
 }
 
 export type TForm = {
